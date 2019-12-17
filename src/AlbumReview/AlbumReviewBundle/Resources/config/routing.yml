@@ -1,0 +1,10 @@
+index:
+    path:     /
+    defaults: { _controller: AlbumReviewAlbumReviewBundle:Page:index }
+
+
+page_about:
+    path: /about
+    defaults: {_controller: AlbumReviewAlbumReviewBundle:Page:about }
+    requirements:
+        _method: GET

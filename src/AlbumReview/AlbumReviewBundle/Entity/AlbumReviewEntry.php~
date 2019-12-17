@@ -1,0 +1,180 @@
+<?php
+
+namespace AlbumReview\AlbumReviewBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ *AlbumReviewEntry
+ *
+ * @ORM\Entity(repositoryClass="AlbumReview\AlbumReviewBundle\Repository\EntryRepository")
+ * @ORM\Table(name = "albumreview_entry")
+ */
+class AlbumReviewEntry
+{
+    /**
+     * @var int
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $artist;
+
+    /**
+     * @var string
+     */
+    private $title;
+
+    /**
+     * @var array
+     */
+    private $trackList;
+
+    /**
+     * @var string
+     */
+    private $reviewer;
+
+    /**
+     * @var string
+     */
+    private $review;
+
+    /**
+     * @var \AlbumReview\AlbumReviewBundle\Entity\User
+     * @ORM\ManyToOne(targetEntity="AlbumReview\AlbumReviewBundle\Entity\User", inversedBy="entries")
+     * @ORM\JoinColumn(name="author", referencedColumnName="id")
+     */
+    private $author;
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set artist.
+     *
+     * @param string $artist
+     *
+     * @return AlbumReviewEntry
+     */
+    public function setArtist($artist)
+    {
+        $this->artist = $artist;
+
+        return $this;
+    }
+
+    /**
+     * Get artist.
+     *
+     * @return string
+     */
+    public function getArtist()
+    {
+        return $this->artist;
+    }
+
+    /**
+     * Set title.
+     *
+     * @param string $title
+     *
+     * @return AlbumReviewEntry
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title.
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set trackList.
+     *
+     * @param array $trackList
+     *
+     * @return AlbumReviewEntry
+     */
+    public function setTrackList($trackList)
+    {
+        $this->trackList = $trackList;
+
+        return $this;
+    }
+
+    /**
+     * Get trackList.
+     *
+     * @return array
+     */
+    public function getTrackList()
+    {
+        return $this->trackList;
+    }
+
+    /**
+     * Set reviewer.
+     *
+     * @param string $reviewer
+     *
+     * @return AlbumReviewEntry
+     */
+    public function setReviewer($reviewer)
+    {
+        $this->reviewer = $reviewer;
+
+        return $this;
+    }
+
+    /**
+     * Get reviewer.
+     *
+     * @return string
+     */
+    public function getReviewer()
+    {
+        return $this->reviewer;
+    }
+
+    /**
+     * Set review.
+     *
+     * @param string $review
+     *
+     * @return AlbumReviewEntry
+     */
+    public function setReview($review)
+    {
+        $this->review = $review;
+
+        return $this;
+    }
+
+    /**
+     * Get review.
+     *
+     * @return string
+     */
+    public function getReview()
+    {
+        return $this->review;
+    }
+}
