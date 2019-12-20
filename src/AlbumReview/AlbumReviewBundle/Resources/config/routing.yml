@@ -8,3 +8,25 @@ page_about:
     defaults: {_controller: AlbumReviewAlbumReviewBundle:Page:about }
     requirements:
         _method: GET
+
+review_view:
+    path:     /view/{id}
+    defaults: { _controller: AlbumReviewAlbumReviewBundle:Review:view }
+    requirements:
+        id: \d+
+
+review_create:
+    path:     /create
+    defaults: { _controller: AlbumReviewAlbumReviewBundle:Review:create }
+
+review_edit:
+    path:     /edit/{id}
+    defaults: { _controller: AlbumReviewAlbumReviewBundle:Review:edit }
+    requirements:
+        id: \d+
+
+review_delete:
+    path:     /delete/{id}
+    defaults: { _controller: AlbumReviewAlbumReviewBundle:Review:delete }
+    requirements:
+        id: \d+

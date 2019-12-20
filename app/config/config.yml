@@ -82,7 +82,7 @@ sensio_framework_extra:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Album\AlbumReviewBundle\Entity\User
+    user_class: AlbumReview\AlbumReviewBundle\Entity\User
     from_email:
         address: "hello@aquanote.com"
         sender_name: "AquaNote Postman"

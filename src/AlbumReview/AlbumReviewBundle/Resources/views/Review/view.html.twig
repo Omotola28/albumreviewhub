@@ -1,0 +1,14 @@
+{% extends 'AlbumReviewAlbumReviewBundle::layout.html.twig' %}
+
+
+{% block title %}{{ entry.title }}{% endblock %}
+{% block body %}
+    <h1>{{ entry.title }}</h1>
+    <h1>{{ entry.artist}}</h1>
+
+    <p>{{ entry.trackList }}</p>
+    <p>{{ entry.review|nl2br }}</p>
+    <p><small>Created by {{ entry.reviewer }}</small>
+        <a href="{{ path('review_edit',{'id':entry.id}) }}">edit</a>
+    </p>
+{% endblock %}
