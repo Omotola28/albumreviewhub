@@ -2,84 +2,74 @@
 
 namespace AlbumReview\AlbumReviewBundle\Controller;
 
+use AlbumReview\AlbumReviewBundle\Entity\ReviewEntry;
+use AlbumReview\AlbumReviewBundle\Form\ReviewEntryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use AlbumReview\AlbumReviewBundle\Entity\AlbumEntry;
-use AlbumReview\AlbumReviewBundle\Form\AlbumEntryType;
 use Symfony\Component\HttpFoundation\Request;
 
 class ReviewController extends Controller
 {
-    public function viewAction($id)
+    public function createReviewAction(Request $request)
     {
-        // Get the doctrine Entity manager
-        $em = $this->getDoctrine()->getManager();
-        // Use the entity manager to retrieve the Entry entity for the id
-        // that has been passed
-        $reviewEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')->find($id);
-        // Pass the entry entity to the view for displaying
-        return $this->render('AlbumReviewAlbumReviewBundle:Review:view.html.twig',
-            ['entry' => $reviewEntry]);
-    }
-
-    public function createAction(Request $request)
-    {
-
-        // Create an new (empty) AlbumEntry entity
-        $reviewEntry = new AlbumEntry();
+        // Create an new (empty) ReviewEntry entity
+        $reviewEntry = new ReviewEntry();
 
         // Create a form from the EntryType class to be validated
         // against the AlbumEntry entity and set the form action attribute
         // to the current URI
-        $form = $this->createForm(AlbumEntryType::class, $reviewEntry,[
+        $reviewForm = $this->createForm(ReviewEntryType::class, $reviewEntry,[
             'action' => $request->getUri()
         ]);
 
         // If the request is post it will populate the form
-        $form->handleRequest($request);
+        $reviewForm->handleRequest($request);
         // validates the form
-        if($form->isValid()) {
+        if($reviewForm->isValid()) {
             // Retrieve the doctrine entity manager
             $em = $this->getDoctrine()->getManager();
             // manually set the author to the current user
             $reviewEntry->setAuthor($this->getUser());
-            $reviewEntry->setReviewer($this->getUser());
+            $reviewEntry->setAlbumReviewer($this->getUser());
+            $reviewEntry->setTimestamp(new \DateTime());
             // tell the entity manager we want to persist this entity
             $em->persist($reviewEntry);
             // commit all changes
             $em->flush();
 
-            return $this->redirect($this->generateUrl('review_view',
+            return $this->redirect($this->generateUrl('album_view',
                 ['id' => $reviewEntry->getId()]));
         }
 
-        return $this->render('AlbumReviewAlbumReviewBundle:Review:create.html.twig',
-            ['form' => $form->createView()]);
-
+        return $this->render('AlbumReviewAlbumReviewBundle:Review:create_review.html.twig',
+            ['form' => $reviewForm->createView()]);
     }
 
-    public function editAction($id, Request $request)
+    public function editReviewAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $reviewEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')->find($id);
-        $form = $this->createForm(AlbumEntryType::class, $reviewEntry, [
+
+        $reviewEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:ReviewEntry')->find($id);
+
+        $reviewForm = $this->createForm(ReviewEntryType::class, $reviewEntry, [
             'action' => $request->getUri()
         ]);
-        $form->handleRequest($request);
-        if($form->isValid()) {
+
+        $reviewForm->handleRequest($request);
+        if($reviewForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('review_view',
+            return $this->redirect($this->generateUrl('album_view',
                 ['id' => $reviewEntry->getId()]));
         }
-        return $this->render('AlbumReviewAlbumReviewBundle:Review:edit.html.twig',
-            ['form' => $form->createView(),
-                'entry' => $reviewEntry]);
+        return $this->render('AlbumReviewAlbumReviewBundle:Review:edit_review.html.twig',
+            ['form' => $reviewForm->createView(),
+                'review' => $reviewEntry]);
     }
 
-    public function deleteAction($id)
+    public function deleteReviewAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $reviewEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')->find($id);
+        $reviewEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:ReviewEntry')->find($id);
         $em->remove($reviewEntry);
         $em->flush();
 

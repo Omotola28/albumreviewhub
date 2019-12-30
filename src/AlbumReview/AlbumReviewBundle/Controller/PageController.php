@@ -8,9 +8,12 @@ class PageController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('AlbumReviewAlbumReviewBundle:Page:index.html.twig', array(
-            // ...
-        ));
+        $em = $this->getDoctrine()->getManager();
+        $albumEntries = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')
+            ->getLatest(10, 0);
+
+        return $this->render('AlbumReviewAlbumReviewBundle:Page:index.html.twig',
+            ['entries' => $albumEntries]);
     }
 
     public function aboutAction()

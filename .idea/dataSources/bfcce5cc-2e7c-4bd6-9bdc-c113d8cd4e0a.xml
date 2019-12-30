@@ -908,10 +908,10 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="228" parent="4" name="album_review_entry">
+    <table id="228" parent="4" name="album_entry">
       <Collation>utf8_unicode_ci</Collation>
     </table>
-    <table id="229" parent="4" name="users">
+    <table id="229" parent="4" name="user">
       <Collation>utf8_unicode_ci</Collation>
     </table>
     <column id="230" parent="228" name="id">
@@ -1027,17 +1027,17 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="249" parent="229" name="UNIQ_1483A5E992FC23A8">
+    <index id="249" parent="229" name="UNIQ_8D93D64992FC23A8">
       <ColNames>username_canonical</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="250" parent="229" name="UNIQ_1483A5E9A0D96FBF">
+    <index id="250" parent="229" name="UNIQ_8D93D649A0D96FBF">
       <ColNames>email_canonical</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="251" parent="229" name="UNIQ_1483A5E9C05FB297">
+    <index id="251" parent="229" name="UNIQ_8D93D649C05FB297">
       <ColNames>confirmation_token</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
@@ -1047,17 +1047,17 @@
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="253" parent="229" name="UNIQ_1483A5E992FC23A8">
+    <key id="253" parent="229" name="UNIQ_8D93D64992FC23A8">
       <ColNames>username_canonical</ColNames>
-      <UnderlyingIndexName>UNIQ_1483A5E992FC23A8</UnderlyingIndexName>
+      <UnderlyingIndexName>UNIQ_8D93D64992FC23A8</UnderlyingIndexName>
     </key>
-    <key id="254" parent="229" name="UNIQ_1483A5E9A0D96FBF">
+    <key id="254" parent="229" name="UNIQ_8D93D649A0D96FBF">
       <ColNames>email_canonical</ColNames>
-      <UnderlyingIndexName>UNIQ_1483A5E9A0D96FBF</UnderlyingIndexName>
+      <UnderlyingIndexName>UNIQ_8D93D649A0D96FBF</UnderlyingIndexName>
     </key>
-    <key id="255" parent="229" name="UNIQ_1483A5E9C05FB297">
+    <key id="255" parent="229" name="UNIQ_8D93D649C05FB297">
       <ColNames>confirmation_token</ColNames>
-      <UnderlyingIndexName>UNIQ_1483A5E9C05FB297</UnderlyingIndexName>
+      <UnderlyingIndexName>UNIQ_8D93D649C05FB297</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>

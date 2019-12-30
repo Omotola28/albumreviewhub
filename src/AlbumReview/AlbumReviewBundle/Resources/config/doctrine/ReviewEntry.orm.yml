@@ -1,0 +1,20 @@
+AlbumReview\AlbumReviewBundle\Entity\ReviewEntry:
+    type: entity
+    table: null
+    repositoryClass: AlbumReview\AlbumReviewBundle\Repository\ReviewEntryRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        albumreviewer:
+            type: string
+            length: '255'
+            unique: true
+        review:
+            type: text
+        timestamp:
+            type: datetime
+    lifecycleCallbacks: {  }

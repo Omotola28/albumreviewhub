@@ -10,4 +10,13 @@ namespace AlbumReview\AlbumReviewBundle\Repository;
  */
 class AlbumEntryRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getLatest($limit, $offset)
+    {
+        $queryBuilder = $this->createQueryBuilder('entry');
+        $queryBuilder->orderBy('entry.id', 'DESC')
+            ->setFirstResult($offset)
+            ->setMaxResults($limit);
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
+    }
 }

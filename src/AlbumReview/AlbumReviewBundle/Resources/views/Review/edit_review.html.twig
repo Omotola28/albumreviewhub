@@ -1,0 +1,8 @@
+{% extends 'AlbumReviewAlbumReviewBundle::layout.html.twig' %}
+
+{% block title %}AlbumReviewAlbumReviewBundle:ReviewController:editReview{% endblock %}
+{% block body %}
+    <h1>Edit review</h1>
+    {{ form(form) }}
+    <p><a href="{{ path('delete_review',{id: review.id }) }}">delete</a></p>
+{% endblock %}

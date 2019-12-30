@@ -4,7 +4,7 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "AppBundle\\": "src/AppBundle",
+            "App\\": "src/AlbumReview",
             "AlbumReview\\": "src/AlbumReview"
         },
         "classmap": [
@@ -39,6 +39,7 @@
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
+        "symfony/maker-bundle": "^1.14",
         "symfony/phpunit-bridge": "^3.0"
     },
     "scripts": {

@@ -9,24 +9,36 @@ page_about:
     requirements:
         _method: GET
 
-review_view:
+album_view:
     path:     /view/{id}
-    defaults: { _controller: AlbumReviewAlbumReviewBundle:Review:view }
+    defaults: { _controller: AlbumReviewAlbumReviewBundle:Album:view }
     requirements:
         id: \d+
 
-review_create:
+album_create:
     path:     /create
-    defaults: { _controller: AlbumReviewAlbumReviewBundle:Review:create }
+    defaults: { _controller: AlbumReviewAlbumReviewBundle:Album:create }
 
-review_edit:
+album_edit:
     path:     /edit/{id}
-    defaults: { _controller: AlbumReviewAlbumReviewBundle:Review:edit }
+    defaults: { _controller: AlbumReviewAlbumReviewBundle:Album:edit }
     requirements:
         id: \d+
 
-review_delete:
+album_delete:
     path:     /delete/{id}
-    defaults: { _controller: AlbumReviewAlbumReviewBundle:Review:delete }
+    defaults: { _controller: AlbumReviewAlbumReviewBundle:Album:delete }
     requirements:
         id: \d+
+
+create_review:
+    path:     /createReview
+    defaults: { _controller: AlbumReviewAlbumReviewBundle:Review:createReview }
+
+edit_review:
+    path:     /editReview/{id}
+    defaults: { _controller: AlbumReviewAlbumReviewBundle:Review:editReview }
+
+delete_review:
+    path:     /deleteReview/{id}
+    defaults: { _controller: AlbumReviewAlbumReviewBundle:Review:deleteReview }

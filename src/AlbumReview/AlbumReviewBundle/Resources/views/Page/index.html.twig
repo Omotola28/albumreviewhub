@@ -3,5 +3,15 @@
 {% block title %}AlbumReviewAlbumReviewBundle:Page:index{% endblock %}
 
 {% block body %}
-<h1>Welcome to the Page:index page</h1>
+    {% for entry in entries %}
+        <article>
+            <h2><a href="{{ path('album_view',{id : entry.id}) }}">
+                    {{ entry.title | title }}</a></h2>
+            <p>{{ entry.review | nl2br }}</p>
+            <p>
+                <small>Created by {{ entry.reviewer }} at
+                    {{ entry.timestamp | date('H:i d/m/y') }}</small>
+            </p>
+        </article>
+    {% endfor %}
 {% endblock %}
