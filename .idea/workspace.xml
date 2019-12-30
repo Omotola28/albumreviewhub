@@ -2,38 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3cf7d82-bea4-44b5-9d3a-40259ec4ecc1" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/config/packages/dev/maker.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/AlbumController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/ReviewEntry.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Form/ReviewEntryType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Repository/ReviewEntryRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/config/doctrine/ReviewEntry.orm.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/config/packages/dev/maker.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Review/create_review.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Review/edit_review.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Tests/Controller/ReviewControllerControllerTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/Entity/ReviewEntry.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/Repository/ReviewEntryRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/albumreviewhub.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/albumreviewhub.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bfcce5cc-2e7c-4bd6-9bdc-c113d8cd4e0a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/bfcce5cc-2e7c-4bd6-9bdc-c113d8cd4e0a.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/AppKernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AppKernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/security.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/security.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/services.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/services.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/packages/dev/maker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/packages/dev/maker.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/PageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/ReviewController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/ReviewController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/AlbumEntry.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/AlbumEntry.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Repository/AlbumEntryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Repository/AlbumEntryRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Page/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Page/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Review/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Album/create.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Review/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Album/edit.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Review/view.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Album/view.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/AppBundle.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/ReviewEntry.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/ReviewEntry.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -337,7 +311,7 @@
       <workItem from="1576622092774" duration="816000" />
       <workItem from="1576699172429" duration="1145000" />
       <workItem from="1576702606624" duration="24951000" />
-      <workItem from="1577475983581" duration="23971000" />
+      <workItem from="1577475983581" duration="30856000" />
     </task>
     <servers />
   </component>
@@ -352,10 +326,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="320" y="115" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1577470142646" />
-    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser" timestamp="1576762195544">
+    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser" timestamp="1577740201497">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1576762195544" />
+    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1577740201497" />
     <state x="353" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1577480955255">
       <screen x="0" y="23" width="1440" height="814" />
     </state>
@@ -373,6 +347,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="481" y="341" width="478" height="245" key="ComposerInitDialogKey/0.0.1440.900@0.0.1440.900" timestamp="1576701949352" />
+    <state x="360" y="273" key="NewPhpClassDialog" timestamp="1577739881542">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="360" y="273" key="NewPhpClassDialog/0.0.1440.900@0.0.1440.900" timestamp="1577739881542" />
     <state x="449" y="140" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1577470965343">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

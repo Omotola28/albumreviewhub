@@ -6,39 +6,59 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ReviewEntry
- * @ORM\Entity
  * @ORM\Table(name="review_entry")
+ * @ORM\Entity(repositoryClass="AlbumReview\AlbumReviewBundle\Repository\ReviewEntryRepository")
  */
 class ReviewEntry
 {
     /**
      * @var int
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var string
+     * @ORM\Column(type="string")
      */
     private $albumreviewer;
 
     /**
      * @var string
+     * @ORM\Column(type="string")
      */
     private $review;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $timestamp;
 
     /**
      * @var \AlbumReview\AlbumReviewBundle\Entity\AlbumEntry
-     * @ORM\ManyToOne(targetEntity="AlbumReview\AlbumReviewBundle\Entity\AlbumEntry",
-    inversedBy="reviewEntries")
-     * @ORM\JoinColumn(name="author", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="AlbumReview\AlbumReviewBundle\Entity\AlbumEntry", inversedBy="reviewEntries")
+     * @ORM\JoinColumn(name="album", referencedColumnName="id")
      */
-    private $author;
+    private $album;
+
+    /**
+     * @return AlbumEntry
+     */
+    public function getAlbum()
+    {
+        return $this->album;
+    }
+
+    /**
+     * @param AlbumEntry $album
+     */
+    public function setAlbum($album)
+    {
+        $this->album = $album;
+    }
 
     /**
      * Get id.

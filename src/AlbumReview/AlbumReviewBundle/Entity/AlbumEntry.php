@@ -59,12 +59,13 @@ class AlbumEntry
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
-     * @ORM\OneToMany(targetEntity="\AlbumReview\AlbumReviewBundle\Entity\ReviewEntry", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="\AlbumReview\AlbumReviewBundle\Entity\ReviewEntry", mappedBy="album")
      */
     protected $reviewEntries;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $timestamp;
 
