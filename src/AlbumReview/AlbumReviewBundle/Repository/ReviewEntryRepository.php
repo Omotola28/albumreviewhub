@@ -10,4 +10,16 @@ namespace AlbumReview\AlbumReviewBundle\Repository;
  */
 class ReviewEntryRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAssociatedReviews($album_id)
+    {
+        //Get all the reviews that are associated with the album id.
+        //Get reviews from review.entry where album_id is equal to the
+        //the current album
+        $queryBuilder = $this->createQueryBuilder('entry');
+        $queryBuilder->orderBy('entry.id', 'DESC')
+            ->setParameter(':albumID', $album_id)
+            ->where('entry.album = :albumID');
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
+    }
 }

@@ -4,6 +4,7 @@ namespace AlbumReview\AlbumReviewBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+
 class PageController extends Controller
 {
     public function indexAction()
@@ -22,5 +23,6 @@ class PageController extends Controller
             //..
         ));
     }
+
 
 }

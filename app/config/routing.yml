@@ -3,7 +3,7 @@ album_review_album_review:
     prefix:   /
 
 app:
-    resource: '@AppBundle/Controller/'
+    resource: '@AlbumReviewAlbumReviewBundle/Controller/'
     type: annotation
 
 fos_user:

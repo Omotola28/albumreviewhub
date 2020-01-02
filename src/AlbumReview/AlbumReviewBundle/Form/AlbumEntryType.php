@@ -21,7 +21,9 @@ class AlbumEntryType extends AbstractType
             ->add('review')
             ->add('submit', SubmitType::class);
 
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

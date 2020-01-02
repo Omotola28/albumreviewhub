@@ -17,7 +17,9 @@ class ReviewEntryType extends AbstractType
         $builder
             ->add('review')
             ->add('submit',SubmitType::class);
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * AlbumEntry
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AlbumReview\AlbumReviewBundle\Repository\AlbumEntryRepository")
  * @ORM\Table(name="album_entry")
  */
 class AlbumEntry
@@ -51,9 +51,9 @@ class AlbumEntry
     private $review;
 
     /**
-     * @var \AlbumReview\AlbumReviewBundle\Entity\ReviewEntry
-     * @ORM\ManyToOne(targetEntity="\AlbumReview\AlbumReviewBundle\Entity\ReviewEntry", inversedBy="entries")
-     * @ORM\JoinColumn(name="author", referencedColumnName="id")
+     * @var \AlbumReview\AlbumReviewBundle\Entity\User
+     * @ORM\ManyToOne(targetEntity="\AlbumReview\AlbumReviewBundle\Entity\User", inversedBy="entries")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
      */
     private $author;
 
@@ -61,18 +61,19 @@ class AlbumEntry
      * @var \Doctrine\Common\Collections\ArrayCollection
      * @ORM\OneToMany(targetEntity="\AlbumReview\AlbumReviewBundle\Entity\ReviewEntry", mappedBy="album")
      */
-    protected $reviewEntries;
+    private $review_entries;
+
 
     /**
      * @var \DateTime
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $timestamp;
+     private $timestamp;
+
 
     public function __construct()
     {
-        parent::__construct();
-        $this->reviewEntries = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->review_entries = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -83,6 +84,22 @@ class AlbumEntry
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getTimestamp()
+    {
+        return $this->timestamp;
+    }
+
+    /**
+     * @param \DateTime $timestamp
+     */
+    public function setTimestamp($timestamp)
+    {
+        $this->timestamp = $timestamp;
     }
 
     /**
@@ -230,62 +247,44 @@ class AlbumEntry
     }
 
     /**
-     * Set timestamp.
-     *
-     * @param \DateTime $timestamp
-     *
-     * @return AlbumEntry
-     */
-    public function setTimestamp($timestamp)
-    {
-        $this->timestamp = $timestamp;
-
-        return $this;
-    }
-
-    /**
-     * Get timestamp.
-     *
-     * @return \DateTime
-     */
-    public function getTimestamp()
-    {
-        return $this->timestamp;
-    }
-
-    /**
-     * Add entry.
-     *
-     * @param \AlbumReview\AlbumReviewBundle\Entity\ReviewEntry $entry
-     *
-     * @return AlbumEntry
-     */
-    public function addReviewEntry(\AlbumReview\AlbumReviewBundle\Entity\ReviewEntry $entry)
-    {
-        $this->reviewEntries[] = $entry;
-
-        return $this;
-    }
-
-    /**
-     * Remove entry.
-     *
-     * @param \AlbumReview\AlbumReviewBundle\Entity\ReviewEntry $entry
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeReviewEntry(\AlbumReview\AlbumReviewBundle\Entity\ReviewEntry $entry)
-    {
-        return $this->reviewEntries->removeElement($entry);
-    }
-
-    /**
-     * Get entries.
-     *
-     * @return Collection
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getReviewEntries()
     {
-        return $this->reviewEntries;
+        return $this->review_entries;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $review_entries
+     */
+    public function setReviewEntries($review_entries)
+    {
+        $this->review_entries = $review_entries;
+    }
+
+    /**
+     * Add reviewEntry.
+     *
+     * @param \AlbumReview\AlbumReviewBundle\Entity\ReviewEntry $reviewEntry
+     *
+     * @return AlbumEntry
+     */
+    public function addReviewEntry(\AlbumReview\AlbumReviewBundle\Entity\ReviewEntry $reviewEntry)
+    {
+        $this->review_entries[] = $reviewEntry;
+
+        return $this;
+    }
+
+    /**
+     * Remove reviewEntry.
+     *
+     * @param \AlbumReview\AlbumReviewBundle\Entity\ReviewEntry $reviewEntry
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeReviewEntry(\AlbumReview\AlbumReviewBundle\Entity\ReviewEntry $reviewEntry)
+    {
+        return $this->review_entries->removeElement($reviewEntry);
     }
 }

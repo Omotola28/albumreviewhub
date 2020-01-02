@@ -2,6 +2,8 @@
 
 namespace AlbumReview\AlbumReviewBundle\Controller;
 
+use AlbumReview\AlbumReviewBundle\AlbumReviewAlbumReviewBundle;
+use AlbumReview\AlbumReviewBundle\Entity\AlbumEntry;
 use AlbumReview\AlbumReviewBundle\Entity\ReviewEntry;
 use AlbumReview\AlbumReviewBundle\Form\ReviewEntryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,8 +29,11 @@ class ReviewController extends Controller
         if($reviewForm->isValid()) {
             // Retrieve the doctrine entity manager
             $em = $this->getDoctrine()->getManager();
+            //Retrieve the album and store the object in a variable
+            $album = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')->find($request->query->get('id'));
+            //Set album for review created
+            $reviewEntry->setAlbum($album);
             // manually set the author to the current user
-            $reviewEntry->setAuthor($this->getUser());
             $reviewEntry->setAlbumReviewer($this->getUser());
             $reviewEntry->setTimestamp(new \DateTime());
             // tell the entity manager we want to persist this entity
@@ -37,7 +42,7 @@ class ReviewController extends Controller
             $em->flush();
 
             return $this->redirect($this->generateUrl('album_view',
-                ['id' => $reviewEntry->getId()]));
+                ['id' => $album->getId() ]));
         }
 
         return $this->render('AlbumReviewAlbumReviewBundle:Review:create_review.html.twig',
@@ -46,6 +51,7 @@ class ReviewController extends Controller
 
     public function editReviewAction($id, Request $request)
     {
+
         $em = $this->getDoctrine()->getManager();
 
         $reviewEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:ReviewEntry')->find($id);

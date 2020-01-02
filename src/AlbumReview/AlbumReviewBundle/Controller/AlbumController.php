@@ -5,6 +5,7 @@ namespace AlbumReview\AlbumReviewBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AlbumReview\AlbumReviewBundle\Entity\AlbumEntry;
 use AlbumReview\AlbumReviewBundle\Form\AlbumEntryType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 
 class AlbumController extends Controller
@@ -17,7 +18,7 @@ class AlbumController extends Controller
         // that has been passed
         $albumEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')->find($id);
 
-        $reviewEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:ReviewEntry')->findAll();
+        $reviewEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:ReviewEntry')->getAssociatedReviews($id);
         // Pass the entry entity to the view for displaying
         return $this->render('AlbumReviewAlbumReviewBundle:Album:view.html.twig',
             ['entry' => $albumEntry, 'reviews' => $reviewEntry]);
@@ -51,7 +52,7 @@ class AlbumController extends Controller
             // commit all changes
             $em->flush();
 
-            return $this->redirect($this->generateUrl('review_view',
+            return $this->redirect($this->generateUrl('album_view',
                 ['id' => $albumEntry->getId()]));
         }
 
@@ -87,7 +88,33 @@ class AlbumController extends Controller
         $em->flush();
 
         return $this->redirect(
-            $this->generateUrl('AlbumReviewAlbumReviewBundle_index'));
+            $this->generateUrl('index'));
+    }
+
+    public function searchBarAction()
+    {
+        $form = $this->createFormBuilder(null)
+            ->add('search', TextType::class)
+            ->getForm();
+
+        return $this->render('AlbumReviewAlbumReviewBundle:Page:search.html.twig',
+            ['form' => $form->createView()]);
+    }
+
+    public function handleSearchAction(Request $request)
+    {
+        $queryString = $request->request->get('form');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $searchResult = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')
+            ->getSearchResults($queryString['search']);
+
+        if(count($searchResult) == 0){
+            return $this->render('AlbumReviewAlbumReviewBundle:Page:noresult.html.twig');
+        }
+        return $this->render('AlbumReviewAlbumReviewBundle:Page:index.html.twig',
+            ['entries' => $searchResult ]);
     }
 
 }

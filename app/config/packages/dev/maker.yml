@@ -1,4 +1,4 @@
-# config/packages/dev/maker.yaml
+# config/packages/dev/maker.yml
 # create this file if you need to configure anything
 maker:
     # tell MakerBundle that all of your classes lives in an

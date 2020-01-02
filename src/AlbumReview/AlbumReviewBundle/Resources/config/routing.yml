@@ -1,7 +1,6 @@
 index:
-    path:     /
+    path: /
     defaults: { _controller: AlbumReviewAlbumReviewBundle:Page:index }
-
 
 page_about:
     path: /about
@@ -14,6 +13,12 @@ album_view:
     defaults: { _controller: AlbumReviewAlbumReviewBundle:Album:view }
     requirements:
         id: \d+
+
+album_search:
+    path: /search
+    defaults: { _controller: AlbumReviewAlbumReviewBundle:Album:handleSearch }
+    requirements:
+        _method: POST
 
 album_create:
     path:     /create
