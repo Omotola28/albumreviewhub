@@ -82,13 +82,33 @@ class AlbumController extends Controller
 
     public function deleteAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $albumEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')->find($id);
-        $em->remove($albumEntry);
-        $em->flush();
+        //Get roles associated with user
+        $array_roles = $this->getUser()->getRoles();
 
-        return $this->redirect(
-            $this->generateUrl('index'));
+        $em = $this->getDoctrine()->getManager();
+
+        //For if the delete operation does not happen
+        $albumEntries = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')
+            ->getLatest(10, 0);
+
+        //album that the user would like to delete
+        $albumEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')->find($id);
+
+        if(in_array("ROLE_ADMIN", $array_roles) || $albumEntry->getAuthor() == $this->getUser())
+        {
+
+            $em->remove($albumEntry);
+            $em->flush();
+
+            return $this->redirect(
+                $this->generateUrl('index', ['message' => 'successfully deleted']));
+        }
+        else
+        {
+            return $this->render('AlbumReviewAlbumReviewBundle:Page:index.html.twig',
+                ['entries' => $albumEntries, 'message' => 'You have to have admin privileges to delete this album']);
+        }
+
     }
 
     public function searchBarAction()
@@ -107,14 +127,17 @@ class AlbumController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
+        //Get search results from query
         $searchResult = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')
             ->getSearchResults($queryString['search']);
 
-        if(count($searchResult) == 0){
+        //If no results were gotten alert the user
+        if(count($searchResult) == 0)
             return $this->render('AlbumReviewAlbumReviewBundle:Page:noresult.html.twig');
-        }
+
+        //If all is well show user the results of search.
         return $this->render('AlbumReviewAlbumReviewBundle:Page:index.html.twig',
-            ['entries' => $searchResult ]);
+            ['entries' => $searchResult]);
     }
 
 }

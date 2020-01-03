@@ -40,7 +40,7 @@ class ReviewEntry
     /**
      * @var \AlbumReview\AlbumReviewBundle\Entity\AlbumEntry
      * @ORM\ManyToOne(targetEntity="AlbumReview\AlbumReviewBundle\Entity\AlbumEntry", inversedBy="review_entries")
-     * @ORM\JoinColumn(name="album_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="album_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $album;
 

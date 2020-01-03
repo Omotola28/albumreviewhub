@@ -3,6 +3,9 @@
 {% block title %}AlbumReviewAlbumReviewBundle:Page:index{% endblock %}
 
 {% block body %}
+    {% if message is defined %}
+        <div class="alert alert-danger" role="alert">{{ message }}</div>
+    {% endif %}
     {% for entry in entries %}
         <article>
             <h2><a href="{{ path('album_view',{id : entry.id}) }}">
