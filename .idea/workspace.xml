@@ -2,12 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3cf7d82-bea4-44b5-9d3a-40259ec4ecc1" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Resources/public/images/2158e66cfe5c5d6a387eb3edd560b2e7." afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/public/images/4b1b5c37e7e3c46bea2152d80be4152f." afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/public/images/5b221ad6c5b5ef5abf0b24e28c07776b." afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/public/images/a8df1d26da9733b7c767a1a7a378efd5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Resources/public/images/e6304f4d3f349b323336378ce8bb5397." afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/public/images/a8df1d26da9733b7c767a1a7a378efd5.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/AlbumController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/AlbumController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/ReviewEntry.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/ReviewEntry.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/translations/FOSUserBundle.en.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/translations/FOSUserBundle.en.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Page/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Page/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/AlbumEntry.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/AlbumEntry.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Form/AlbumEntryType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Form/AlbumEntryType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/config/routing.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Album/view.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Album/view.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +246,7 @@
     <property name="SearchEverywhereHistoryKey" value="regis&#9;FILE&#9;file:///home/lae891/albumreviewhub/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/register.html.twig&#10;layout&#9;FILE&#9;file:///home/lae891/albumreviewhub/vendor/friendsofsymfony/user-bundle/Resources/views/layout.html.twig&#10;layou&#9;FILE&#9;file:///home/lae891/albumreviewhub/vendor/symfony/assetic-bundle/Tests/Resources/Resources/views/layout.html.twig&#10;EN.YM&#9;FILE&#9;file:///home/lae891/albumreviewhub/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.en.yml&#10;layout.htm&#9;FILE&#9;file:///home/lae891/albumreviewhub/src/AlbumReview/AlbumReviewBundle/Resources/views/layout.html.twig&#10;register&#9;FILE&#9;file:///home/lae891/albumreviewhub/vendor/friendsofsymfony/user-bundle/Resources/views/Registration/register.html.twig&#10;layo&#9;FILE&#9;file:///home/lae891/albumreviewhub/src/AlbumReview/AlbumReviewBundle/Resources/views/layout.html.twig&#10;SecurityCOn&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/config" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Resources/public/images" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -254,14 +262,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/Resources/public/images" />
       <recent name="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/public/images" />
+      <recent name="$PROJECT_DIR$/app/Resources/public" />
+      <recent name="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources" />
       <recent name="$PROJECT_DIR$/app/Resources" />
       <recent name="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/config" />
-      <recent name="$PROJECT_DIR$/app/config" />
-      <recent name="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources" />
-      <recent name="$PROJECT_DIR$/app/Resources/translations" />
     </key>
   </component>
   <component name="RunManager">
@@ -275,7 +284,17 @@
       <list>
         <serviceView>
           <treeState>
-            <expand />
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:Poseidon" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="root:Poseidon" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@1e0abf3f" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
             <select />
           </treeState>
         </serviceView>
@@ -311,7 +330,7 @@
       <workItem from="1576622092774" duration="816000" />
       <workItem from="1576699172429" duration="1145000" />
       <workItem from="1576702606624" duration="24951000" />
-      <workItem from="1577475983581" duration="76156000" />
+      <workItem from="1577475983581" duration="84172000" />
     </task>
     <servers />
   </component>
@@ -326,10 +345,16 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="320" y="115" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1577470142646" />
-    <state x="533" y="181" key="#com.intellij.ide.util.MemberChooser" timestamp="1577807230520">
-      <screen x="0" y="23" width="1440" height="821" />
+    <state x="351" y="231" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1578261672419">
+      <screen x="0" y="23" width="1440" height="812" />
+    </state>
+    <state x="351" y="231" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.812@0.23.1440.812" timestamp="1578261672419" />
+    <state x="351" y="232" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.814@0.23.1440.814" timestamp="1578257358992" />
+    <state x="533" y="179" key="#com.intellij.ide.util.MemberChooser" timestamp="1578159098647">
+      <screen x="0" y="23" width="1440" height="811" />
     </state>
     <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1577740201497" />
+    <state x="533" y="179" key="#com.intellij.ide.util.MemberChooser/0.23.1440.811@0.23.1440.811" timestamp="1578159098647" />
     <state x="533" y="181" key="#com.intellij.ide.util.MemberChooser/0.23.1440.821@0.23.1440.821" timestamp="1577807230520" />
     <state x="353" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1577480955255">
       <screen x="0" y="23" width="1440" height="814" />

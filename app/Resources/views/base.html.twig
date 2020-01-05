@@ -48,9 +48,11 @@
                 ))}}
             </div>
         </div>
-        <div>
-            <p> Hi {{ app.user.username}} !</p>
-        </div>
+        {% if app.user is not null %}
+            <div>
+                 <p> Hi {{ app.user.username}} !</p>
+             </div>
+        {% endif %}
 
     </nav>
     <div class="row">

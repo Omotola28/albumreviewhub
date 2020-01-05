@@ -5,7 +5,7 @@
 {% block body %}
     <h1>{{ entry.title }}</h1>
     <h1>{{ entry.artist}}</h1>
-
+    <img src="{{ asset('/Users/omotolashogunle/albumreviewhub/app/Resources/public/images/'~ entry.image) }}" width='200' height='200'>
     <p>{{ entry.trackList }}</p>
     <p>{{ entry.review|nl2br }}</p>
     <p><small>Created by {{ entry.reviewer }}  at

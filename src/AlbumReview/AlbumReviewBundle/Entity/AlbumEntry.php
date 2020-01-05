@@ -4,6 +4,7 @@ namespace AlbumReview\AlbumReviewBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * AlbumEntry
@@ -69,6 +70,13 @@ class AlbumEntry
      * @ORM\Column(type="datetime", nullable=true)
      */
      private $timestamp;
+
+    /**
+     * @ Assert/NotBlank('Please upload an image')
+     * @ Assert/Image()
+     * @ORM\Column(name="image", type="string", length=255)
+     */
+    private $image;
 
 
     public function __construct()
@@ -225,7 +233,7 @@ class AlbumEntry
     /**
      * Set author.
      *
-     * @param \AlbumReview\AlbumReviewBundle\Entity\User|null $author
+     * @param \AlbumReview\AlbumReviewBundle\Entity\User $author
      *
      * @return AlbumEntry
      */
@@ -286,5 +294,21 @@ class AlbumEntry
     public function removeReviewEntry(\AlbumReview\AlbumReviewBundle\Entity\ReviewEntry $reviewEntry)
     {
         return $this->review_entries->removeElement($reviewEntry);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
     }
 }
