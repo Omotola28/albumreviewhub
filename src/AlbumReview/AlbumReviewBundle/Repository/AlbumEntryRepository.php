@@ -32,4 +32,12 @@ class AlbumEntryRepository extends \Doctrine\ORM\EntityRepository
         $query = $queryBuilder->getQuery();
         return $query->getResult();
     }
+
+    public function getAlbumImage($id)
+    {
+        $queryBuilder = $this->createQueryBuilder('album');
+        $queryBuilder->select('image')
+            ->setParameter(':id', $id)
+            ->where('album.id = :id');
+    }
 }

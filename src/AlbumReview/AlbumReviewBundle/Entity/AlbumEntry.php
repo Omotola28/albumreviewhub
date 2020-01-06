@@ -297,7 +297,7 @@ class AlbumEntry
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getImage()
     {

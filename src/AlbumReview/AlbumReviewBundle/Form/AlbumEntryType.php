@@ -20,9 +20,8 @@ class AlbumEntryType extends AbstractType
             ->add('title')
             ->add('track_list')
             ->add('review')
-            ->add('image', Filetype::class, array('label' => 'upload an image'))
+            ->add('image', Filetype::class, array('label' => 'upload an image', 'data_class' => null))
             ->add('submit', SubmitType::class);
-
     }
 
     /**

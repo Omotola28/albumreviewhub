@@ -2,19 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3cf7d82-bea4-44b5-9d3a-40259ec4ecc1" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Resources/public/images/2158e66cfe5c5d6a387eb3edd560b2e7." afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Resources/public/images/4b1b5c37e7e3c46bea2152d80be4152f." afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Resources/public/images/5b221ad6c5b5ef5abf0b24e28c07776b." afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Resources/public/images/a8df1d26da9733b7c767a1a7a378efd5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Resources/public/images/e6304f4d3f349b323336378ce8bb5397." afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/public/images/a8df1d26da9733b7c767a1a7a378efd5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/images/17b19307c44a33c7ea8a63552ebfe918.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/uploads/images/e8e740c0467395d087c67632766be0a8.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/public/images/2158e66cfe5c5d6a387eb3edd560b2e7." beforeDir="false" afterPath="$PROJECT_DIR$/web/uploads/images/e9590fb8967feba8375566354ac6bf7e.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/public/images/4b1b5c37e7e3c46bea2152d80be4152f." beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/public/images/5b221ad6c5b5ef5abf0b24e28c07776b." beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/public/images/a8df1d26da9733b7c767a1a7a378efd5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Resources/public/images/e6304f4d3f349b323336378ce8bb5397." beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/AlbumController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/AlbumController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/AlbumEntry.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/AlbumEntry.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Form/AlbumEntryType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Form/AlbumEntryType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/config/routing.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Repository/AlbumEntryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Repository/AlbumEntryRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/public/images/a8df1d26da9733b7c767a1a7a378efd5.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Album/view.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Album/view.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -284,17 +285,7 @@
       <list>
         <serviceView>
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:Poseidon" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:Poseidon" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@1e0abf3f" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -330,7 +321,7 @@
       <workItem from="1576622092774" duration="816000" />
       <workItem from="1576699172429" duration="1145000" />
       <workItem from="1576702606624" duration="24951000" />
-      <workItem from="1577475983581" duration="84172000" />
+      <workItem from="1577475983581" duration="93395000" />
     </task>
     <servers />
   </component>
