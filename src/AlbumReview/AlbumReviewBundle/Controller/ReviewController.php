@@ -61,26 +61,57 @@ class ReviewController extends Controller
         ]);
 
         $reviewForm->handleRequest($request);
-        if($reviewForm->isValid()) {
-            $em->flush();
 
-            return $this->redirect($this->generateUrl('album_view',
-                ['id' => $reviewEntry->getId()]));
+        if( $reviewEntry->getAlbumReviewer() == $this->getUser())
+        {
+            if($reviewForm->isValid()) {
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('album_view',
+                    ['id' => $reviewEntry->getId()]));
+            }
+            return $this->render('AlbumReviewAlbumReviewBundle:Review:edit_review.html.twig',
+                ['form' => $reviewForm->createView(),
+                    'review' => $reviewEntry]);
         }
-        return $this->render('AlbumReviewAlbumReviewBundle:Review:edit_review.html.twig',
-            ['form' => $reviewForm->createView(),
-                'review' => $reviewEntry]);
+        else
+        {
+            return $this->redirect(
+                $this->generateUrl('index', ['error' => 'Only review author can edit review']));
+        }
+
     }
 
     public function deleteReviewAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $reviewEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:ReviewEntry')->find($id);
-        $em->remove($reviewEntry);
-        $em->flush();
 
-        return $this->redirect(
-            $this->generateUrl('AlbumReviewAlbumReviewBundle_index'));
+        $reviewEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:ReviewEntry')->find($id);
+
+        $array_roles = $this->getUser()->getRoles();
+
+
+        //if the user has any of these priviliges or the actual user is currently signed in
+        if($this->role_in_roles(["ROLE_ADMIN", "ROLE_MODERATOR"], $array_roles) ||
+            $reviewEntry->getAlbumReviewer() == $this->getUser())
+        {
+
+            $em->remove($reviewEntry);
+            $em->flush();
+
+            return $this->redirect(
+                $this->generateUrl('index', ['success' => 'successfully deleted review']));
+        }
+        else
+        {
+            return $this->redirect(
+                $this->generateUrl('index', ['error' => 'No permission to delete review']));
+        }
+    }
+
+    public function role_in_roles($needles, $haystack)
+    {
+        return empty(array_diff($needles, $haystack));
     }
 
 }

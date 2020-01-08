@@ -20,9 +20,12 @@ class AlbumController extends Controller
         $albumEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')->find($id);
 
         $reviewEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:ReviewEntry')->getAssociatedReviews($id);
+
+        $tracks = $albumEntry->getTrackList();
+
         // Pass the entry entity to the view for displaying
         return $this->render('AlbumReviewAlbumReviewBundle:Album:view.html.twig',
-            ['entry' => $albumEntry, 'reviews' => $reviewEntry]);
+            ['entry' => $albumEntry, 'reviews' => $reviewEntry, 'tracks' => $tracks]);
     }
 
     public function createAction(Request $request)
@@ -69,6 +72,8 @@ class AlbumController extends Controller
     public function editAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+
+
         $albumEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')->find($id);
 
         $form = $this->createForm(AlbumEntryType::class, $albumEntry, [
@@ -77,19 +82,28 @@ class AlbumController extends Controller
 
         $form->handleRequest($request);
 
+        if( $albumEntry->getAuthor() == $this->getUser())
+        {
+            if($form->isValid()) {
 
-       if($form->isValid()) {
+                $this->uploadImageForAlbum($albumEntry);
 
-           $this->uploadImageForAlbum($albumEntry);
+                $em->flush();
 
-           $em->flush();
-
-           return $this->redirect($this->generateUrl('album_view',
-                ['id' => $albumEntry->getId()]));
+                return $this->redirect($this->generateUrl('album_view',
+                    ['id' => $albumEntry->getId()]));
+            }
+            return $this->render('AlbumReviewAlbumReviewBundle:Album:edit.html.twig',
+                ['form' => $form->createView(),
+                    'entry' => $albumEntry]);
         }
-        return $this->render('AlbumReviewAlbumReviewBundle:Album:edit.html.twig',
-            ['form' => $form->createView(),
-                'entry' => $albumEntry]);
+        else
+            {
+                return $this->redirect(
+                    $this->generateUrl('index', ['error' => 'Only album author can edit album']));
+        }
+
+
     }
 
     public function deleteAction($id)
@@ -113,12 +127,12 @@ class AlbumController extends Controller
             $em->flush();
 
             return $this->redirect(
-                $this->generateUrl('index', ['message' => 'successfully deleted']));
+                $this->generateUrl('index', ['success' => 'successfully deleted']));
         }
         else
         {
             return $this->render('AlbumReviewAlbumReviewBundle:Page:index.html.twig',
-                ['entries' => $albumEntries, 'message' => 'You have to have admin privileges to delete this album']);
+                ['entries' => $albumEntries, 'error' => 'You have to have admin privileges to delete this album']);
         }
 
     }
@@ -168,6 +182,21 @@ class AlbumController extends Controller
         );
 
         $album->setImage($fileName);
+
+    }
+
+    public function viewAlbumsAction()
+    {
+        $user = $this->getUser();
+        // Get the doctrine Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        //Get all users from the database
+        $albums = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')->getAlbumEntryByUser($user->getId());
+        $count = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')->countAlbumEntryByUser($user->getId());
+
+        return $this->render('AlbumReviewAlbumReviewBundle:Album:view_user_albums.html.twig',
+            ['entries' => $albums, 'noOfAlbums' => $count, 'roles' => $this->getUser()->getRoles()]);
 
     }
 

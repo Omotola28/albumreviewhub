@@ -34,7 +34,6 @@ class User extends BaseUser
         $this->entries = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
     /**
      * Get id.
      *

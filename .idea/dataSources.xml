@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Poseidon" uuid="bfcce5cc-2e7c-4bd6-9bdc-c113d8cd4e0a">
+    <data-source source="LOCAL" name="Poseidon" uuid="976b4654-5ded-4dab-92f2-2b0d3e8d016a">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>

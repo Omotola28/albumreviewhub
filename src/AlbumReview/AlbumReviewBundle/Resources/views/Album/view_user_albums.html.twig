@@ -3,17 +3,18 @@
 {% block title %}AlbumReviewAlbumReviewBundle:Page:index{% endblock %}
 
 {% block body %}
+    <div class="alert alert-info" role="alert">
+        You have created <span class="badge badge-secondary">{{ noOfAlbums }}</span> album/s
+        <a href="{{ path('album_create') }}" class="badge badge-primary">CREATE ALBUM</a>
+    </div>
+    <div class="user_roles">
+        <p>Role/s Assigned:</p>
+        {% for role in roles %}
+            <span class="badge badge-secondary">{{ role }}</span>
+        {% endfor %}
+    </div>
 
-    {% if app.request.query.has('error') %}
-        <div class="alert alert-danger" role="alert">{{ app.request.query.get('error') }}</div>
-    {% elseif app.request.query.has('success') %}
-        <div class="alert alert-success" role="alert">{{ app.request.query.get('success') }}</div>
-    {% endif %}
     <div class="album_display">
-        {#{% if message is defined %}
-            <div class="alert alert-danger" role="alert">{{ message }}</div>
-        {% endif %}#}
-
         {% for entry in entries %}
             <div class="card" style="width: 18rem;">
                 <img src="{{ asset('uploads/images/' ~ entry.image) }}" width='200' height='200'>

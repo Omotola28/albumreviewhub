@@ -3,26 +3,42 @@
 
 {% block title %}{{ entry.title }}{% endblock %}
 {% block body %}
-    <h1>{{ entry.title }}</h1>
-    <h1>{{ entry.artist}}</h1>
-    <img src="{{ asset('uploads/images/' ~ entry.image) }}" width='200' height='200'>
-    <p>{{ entry.trackList }}</p>
-    <p>{{ entry.review|nl2br }}</p>
-    <p><small>Created by {{ entry.reviewer }}  at
-            {{ entry.timestamp|date('H:i d/m/y') }}</small>
-        <a href="{{ path('album_edit',{'id':entry.id}) }}">Edit</a>
-        <a href="{{ path('create_review',{'id':entry.id}) }}">Add review</a>
-    </p>
+
+
+    <div>
+        <h1>{{ entry.title }}</h1>
+        <h1>{{ entry.artist}}</h1>
+        <img src="{{ asset('uploads/images/' ~ entry.image) }}" width='200' height='200'>
+        <div class="card" id="author-card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Creator's review</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Author: {{ entry.reviewer }} at  {{ entry.timestamp|date('H:i d/m/y') }} </h6>
+                <p class="card-text">{{ entry.review|nl2br }}</p>
+                <a href="{{ path('album_edit',{'id':entry.id}) }}" class="card-link">Edit</a>
+                <a href="{{ path('create_review',{'id':entry.id}) }}" class="card-link">Add Review</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-group">
+        <p class="list-group-item list-group-item-action active">
+            Album Tracks
+        </p>
+        {% for track in tracks %}
+            <p class="list-group-item list-group-item-action">{{ track }}</p>
+        {% endfor %}
+    </div>
     {% for review in reviews %}
-        <article>
+        <div class="alert alert-light" id="review-box" role="alert">
+            <h5 class="alert-heading">Reviewed by {{ review.albumreviewer }} at
+                {{ review.timestamp | date('H:i d/m/y') }}</h5>
             <p>{{ review.review | nl2br }}</p>
-            <p>
-                <small>Reviewed by {{ review.albumreviewer }} at
-                    {{ review.timestamp | date('H:i d/m/y') }}
-                    <a href="{{ path('edit_review',{'id':review.id}) }}">edit</a>
-                    <a href="{{ path('delete_review',{'id':review.id}) }}">delete</a>
-                </small>
+            <hr>
+            <p class="mb-0">
+                <a href="{{ path('edit_review',{'id':review.id}) }}">edit</a>
+                <a href="{{ path('delete_review',{'id':review.id}) }}">delete</a>
             </p>
-        </article>
+        </div>
     {% endfor %}
 {% endblock %}
+

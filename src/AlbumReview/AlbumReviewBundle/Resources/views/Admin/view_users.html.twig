@@ -1,0 +1,35 @@
+{% extends "AlbumReviewAlbumReviewBundle::layout.html.twig" %}
+
+{% block title %}AlbumReviewAlbumReviewBundle:Page:index{% endblock %}
+
+{% block body %}
+    {% if message is defined %}
+        <div class="alert alert-info" role="alert">{{ message }}</div>
+    {% endif %}
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col">No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Roles</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% set counter = 0 %}
+            {% for user in users %}
+                {% set counter = counter + 1 %}
+                <tr>
+                    <th scope="row">{{ counter }}</th>
+                    <td><a href="{{ path('admin_control',{'id':user.id}) }}">{{ user.username }}</a></td>
+
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles|join(', ') }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('album_create') }}" class="badge badge-primary">CREATE ALBUM</a>
+{% endblock %}
+

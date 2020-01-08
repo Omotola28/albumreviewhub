@@ -4,12 +4,14 @@ namespace AlbumReview\AlbumReviewBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * AlbumEntry
  * @ORM\Entity(repositoryClass="AlbumReview\AlbumReviewBundle\Repository\AlbumEntryRepository")
  * @ORM\Table(name="album_entry")
+ * @UniqueEntity(fields={"title"}, message="It looks like an album already exsist with this name")
  */
 class AlbumEntry
 {
@@ -29,13 +31,13 @@ class AlbumEntry
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      */
     private $title;
 
     /**
      * @var array
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="array", nullable=false)
      */
     private $trackList;
 
@@ -47,7 +49,7 @@ class AlbumEntry
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      */
     private $review;
 
@@ -82,6 +84,7 @@ class AlbumEntry
     public function __construct()
     {
         $this->review_entries = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->trackList = array();
     }
 
     /**
@@ -179,7 +182,10 @@ class AlbumEntry
      */
     public function getTrackList()
     {
-        return $this->trackList;
+        $tracks = $this->trackList;
+
+        //$tracks_array = explode(",", (string)$tracks);
+        return array_unique($tracks);
     }
 
     /**

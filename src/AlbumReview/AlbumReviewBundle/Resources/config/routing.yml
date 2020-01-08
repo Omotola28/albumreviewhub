@@ -37,6 +37,10 @@ album_delete:
     requirements:
         id: \d+
 
+user_albums_page:
+    path: /user/albums
+    defaults: { _controller: AlbumReviewAlbumReviewBundle:Album:viewAlbums}
+
 create_review:
     path:     /createReview
     defaults: { _controller: AlbumReviewAlbumReviewBundle:Review:createReview }
@@ -48,3 +52,18 @@ edit_review:
 delete_review:
     path:     /deleteReview/{id}
     defaults: { _controller: AlbumReviewAlbumReviewBundle:Review:deleteReview }
+
+admin_dashboard:
+    path: /viewUsers
+    defaults: {_controller: AlbumReviewAlbumReviewBundle:Admin:viewUsers }
+
+admin_control:
+    path:     /admin/user/{id}
+    defaults: { _controller: AlbumReviewAlbumReviewBundle:Admin:privilegeControl }
+    requirements:
+        id: \d+
+
+admin_privilege_handle:
+    path: /admin/user
+    defaults: { _controller: AlbumReviewAlbumReviewBundle:Admin:privilegeControl }
+

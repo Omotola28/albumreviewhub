@@ -7,6 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\CallbackTransformer;
 
 class AlbumEntryType extends AbstractType
 {
@@ -18,10 +19,22 @@ class AlbumEntryType extends AbstractType
         $builder
             ->add('artist')
             ->add('title')
-            ->add('track_list')
+            ->add('track_list', null, ['required'=> true])
             ->add('review')
             ->add('image', Filetype::class, array('label' => 'upload an image', 'data_class' => null))
             ->add('submit', SubmitType::class);
+
+        $builder->get('track_list')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($tracksAsArray) {
+                    // transform the array to a string
+                    return implode(',', $tracksAsArray);
+                },
+                function ($tracksAsString) {
+                    // transform the string back to an array
+                    return explode(',', $tracksAsString);
+                }
+            ));
     }
 
     /**

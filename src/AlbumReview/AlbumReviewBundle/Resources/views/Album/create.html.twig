@@ -3,6 +3,7 @@
 {% block title %}Create a album review entry{% endblock %}
 {% block body %}
     <h1>Create an album review</h1>
+    {{ form_errors(form) }}
     {{ form(form) }}
 {% endblock %}
 

@@ -11,6 +11,17 @@
     box-sizing: border-box;
 }
 
+.navbar-brand {
+    font-weight: 900;
+}
+
+#user p {
+    margin: 1em 0 0 0;
+    float: right;
+    font-family: inherit;
+    font-size: 15px;
+}
+
 input[type=text],
 input[type=email],
 input[type=password],
@@ -67,7 +78,130 @@ input[type=submit]:hover {
     display: table;
     clear: both;
 }
+/*INDEX AREA */
+.album_display{
+    display: flex;
+    justify-content: space-around;
+    display: -webkit-flex; /* Safari */
+    -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+    flex-wrap: wrap;
+}
 
+.card{
+    width: 23rem !important;
+    -webkit-box-shadow: 3px 1px 16px -1px rgba(117,113,117,0.58);
+    -moz-box-shadow: 3px 1px 16px -1px rgba(117,113,117,0.58);
+    box-shadow: 3px 1px 16px -1px rgba(117,113,117,0.58);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/*ADMIN AREA*/
+
+.input-group, .input-group-append{
+    display: inline-flex;
+}
+
+select, .btn {
+    margin-right: 1em;
+}
+
+#albumreview_albumreviewbundle_user_GRANT,
+#albumreview_albumreviewbundle_user_REVOKE{
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    letter-spacing: -1.5px;
+}
+
+#albumreview_albumreviewbundle_user_GRANT{
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    float: left;
+    margin: 7px 10px 0 0;
+}
+
+#albumreview_albumreviewbundle_user_REVOKE{
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    margin: 7px 0 20px 20px;
+}
+
+.badge {
+    border-radius: 0px;
+    padding: 5px 7px;
+}
+
+.badge-primary{
+    margin: 5px 0;
+    background-color: #0062CC;
+}
+
+.input-group-append
+{
+    display: table;
+}
+
+
+/*CREATE ALBUM*/
+label[for=albumreview_albumreviewbundle_albumentry_title] + ul {
+    list-style: none;
+    color: red;
+    text-align: left;
+    padding: 0;
+}
+
+.list-group {
+    margin: 1em 0;
+}
+
+.list-group-item.active {
+    background-color: #8a96a0;
+    border-color: #8a96a0;
+}
+
+.card-link{
+    margin: 1em 2em 0 0;
+}
+
+#author-card{
+    margin-top: 10px;
+    width: 100% !important;
+}
+
+/*VIEW ALBUM*/
+
+hr{
+    margin-top: 11px;
+    margin-bottom: 11px;
+    border-top: 1px solid #ababab38;
+}
+
+#review-box {
+    padding: 11px;
+    border: 1px solid #e4dfdf;
+}
+
+/* USER AREA */
+.user_roles {
+    margin-bottom: 1em;
+}
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
     .col-25, .col-75, input[type=submit] {

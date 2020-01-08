@@ -28,6 +28,7 @@ class AlbumEntryRepository extends \Doctrine\ORM\EntityRepository
         $queryBuilder->select('album')
             ->where('album.title LIKE :string')
             ->orWhere('album.artist LIKE :string')
+            ->orWhere('album.reviewer LIKE :string')
             ->setParameter('string', '%'.$query.'%');
         $query = $queryBuilder->getQuery();
         return $query->getResult();
@@ -39,5 +40,29 @@ class AlbumEntryRepository extends \Doctrine\ORM\EntityRepository
         $queryBuilder->select('image')
             ->setParameter(':id', $id)
             ->where('album.id = :id');
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
+    }
+
+    public function countAlbumEntryByUser($id)
+    {
+        $queryBuilder = $this->createQueryBuilder('album');
+        $totalAlbums = $queryBuilder->select('count(album.id)')
+            ->setParameter(':id', $id)
+            ->where('album.author = :id' )
+        ->getQuery()
+        ->getSingleScalarResult();
+
+        return $totalAlbums;
+    }
+
+    public function getAlbumEntryByUser($id)
+    {
+        $queryBuilder = $this->createQueryBuilder('album');
+        $queryBuilder->select('album')
+            ->setParameter(':id', $id)
+            ->where('album.author = :id' );
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
     }
 }

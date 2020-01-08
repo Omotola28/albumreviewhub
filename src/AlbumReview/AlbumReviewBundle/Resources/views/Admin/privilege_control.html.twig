@@ -1,0 +1,17 @@
+{% extends 'AlbumReviewAlbumReviewBundle::layout.html.twig' %}
+
+
+{% block body %}
+    {% if error is defined %}
+        <div class="alert alert-danger" role="alert">{{ error }}</div>
+    {% endif %}
+    <h3>User details</h3>
+    <p>UserName: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <span class="badge badge-primary">Number of album entries: {{ noOfAlbums }}</span>
+    <div class="input-group-append">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
