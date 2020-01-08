@@ -2,28 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3cf7d82-bea4-44b5-9d3a-40259ec4ecc1" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/AdminController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Form/UserType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Admin/privilege_control.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Admin/view_users.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Album/view_user_albums.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Tests/Controller/AdminControllerTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bfcce5cc-2e7c-4bd6-9bdc-c113d8cd4e0a.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Security/login_content.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Resources/public/css/screen.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/public/css/screen.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/AlbumController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/AlbumController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/ReviewController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/ReviewController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/AlbumEntry.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/AlbumEntry.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Form/AlbumEntryType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Form/AlbumEntryType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Repository/AlbumEntryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Repository/AlbumEntryRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/config/routing.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/config/routing.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Album/create.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Album/create.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Album/view.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Album/view.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Page/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Page/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -330,7 +311,7 @@
       <workItem from="1576699172429" duration="1145000" />
       <workItem from="1576702606624" duration="24951000" />
       <workItem from="1577475983581" duration="114511000" />
-      <workItem from="1578435277652" duration="29966000" />
+      <workItem from="1578435277652" duration="31389000" />
     </task>
     <servers />
   </component>
@@ -401,10 +382,10 @@
     </state>
     <state width="600" height="423" key="javadoc.popup/0.23.1440.811@0.23.1440.811" timestamp="1577926722673" />
     <state width="600" height="424" key="javadoc.popup/0.23.1440.814@0.23.1440.814" timestamp="1577486790905" />
-    <state x="385" y="200" width="670" height="611" key="search.everywhere.popup" timestamp="1577994571345">
-      <screen x="0" y="23" width="1440" height="812" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1578525167513">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1577666491715" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1578525167513" />
     <state x="385" y="200" width="670" height="610" key="search.everywhere.popup/0.23.1440.811@0.23.1440.811" timestamp="1577978463946" />
     <state x="385" y="200" width="670" height="611" key="search.everywhere.popup/0.23.1440.812@0.23.1440.812" timestamp="1577994571345" />
     <state x="385" y="202" width="670" height="617" key="search.everywhere.popup/0.23.1440.821@0.23.1440.821" timestamp="1577754667424" />
