@@ -16,8 +16,7 @@ class AlbumEntryRepository extends \Doctrine\ORM\EntityRepository
         $queryBuilder->orderBy('entry.timestamp', 'DESC')
             ->setFirstResult($offset)
             ->setMaxResults($limit);
-        $query = $queryBuilder->getQuery();
-        return $query->getResult();
+        return $queryBuilder->getQuery();
     }
 
     public function getSearchResults($query)

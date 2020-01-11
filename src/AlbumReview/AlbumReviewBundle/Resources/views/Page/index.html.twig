@@ -10,10 +10,6 @@
         <div class="alert alert-success" role="alert">{{ app.request.query.get('success') }}</div>
     {% endif %}
     <div class="album_display">
-        {#{% if message is defined %}
-            <div class="alert alert-danger" role="alert">{{ message }}</div>
-        {% endif %}#}
-
         {% for entry in entries %}
             <div class="card" style="width: 18rem;">
                 <img src="{{ asset('uploads/images/' ~ entry.image) }}" width='200' height='200'>
@@ -29,5 +25,8 @@
                 </div>
             </div>
         {% endfor %}
+    </div>
+    <div class="navigation  text-center">
+        {{ knp_pagination_render(entries) }}
     </div>
 {% endblock %}

@@ -68,7 +68,7 @@ class ReviewController extends Controller
                 $em->flush();
 
                 return $this->redirect($this->generateUrl('album_view',
-                    ['id' => $reviewEntry->getId()]));
+                    ['id' => $reviewEntry->getAlbum()->getId()]));
             }
             return $this->render('AlbumReviewAlbumReviewBundle:Review:edit_review.html.twig',
                 ['form' => $reviewForm->createView(),

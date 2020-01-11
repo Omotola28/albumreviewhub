@@ -2,9 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3cf7d82-bea4-44b5-9d3a-40259ec4ecc1" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Security/login_content.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/albumreviewhub.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/albumreviewhub.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/public/css/screen.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/Resources/public/css/screen.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/AppKernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AppKernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/PageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/PageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/ReviewController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Controller/ReviewController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/ReviewEntry.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Entity/ReviewEntry.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Repository/AlbumEntryRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Repository/AlbumEntryRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Page/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/AlbumReview/AlbumReviewBundle/Resources/views/Page/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,6 +192,8 @@
       <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/maker-bundle" />
       <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
     </include_path>
   </component>
   <component name="ProjectId" id="1V85oDlrpMys5SLMsG6plaC6AB1" />
@@ -311,7 +322,8 @@
       <workItem from="1576699172429" duration="1145000" />
       <workItem from="1576702606624" duration="24951000" />
       <workItem from="1577475983581" duration="114511000" />
-      <workItem from="1578435277652" duration="31389000" />
+      <workItem from="1578435277652" duration="31555000" />
+      <workItem from="1578760305735" duration="2403000" />
     </task>
     <servers />
   </component>
@@ -372,9 +384,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="449" y="140" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1440.900@0.0.1440.900" timestamp="1577470965343" />
-    <state x="1972" y="313" key="com.intellij.ide.util.TipDialog" timestamp="1578435338350">
-      <screen x="1440" y="0" width="1920" height="1080" />
+    <state x="399" y="261" key="com.intellij.ide.util.TipDialog" timestamp="1578760306866">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="399" y="261" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1578760306866" />
     <state x="399" y="254" key="com.intellij.ide.util.TipDialog/0.23.1440.797@0.23.1440.797" timestamp="1576699276287" />
     <state x="1972" y="313" key="com.intellij.ide.util.TipDialog/0.23.1440.877/1440.0.1920.1080@1440.0.1920.1080" timestamp="1578435338350" />
     <state width="600" height="423" key="javadoc.popup" timestamp="1577926722673">
@@ -382,10 +395,10 @@
     </state>
     <state width="600" height="423" key="javadoc.popup/0.23.1440.811@0.23.1440.811" timestamp="1577926722673" />
     <state width="600" height="424" key="javadoc.popup/0.23.1440.814@0.23.1440.814" timestamp="1577486790905" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1578525167513">
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1578772352360">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1578525167513" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1578772352360" />
     <state x="385" y="200" width="670" height="610" key="search.everywhere.popup/0.23.1440.811@0.23.1440.811" timestamp="1577978463946" />
     <state x="385" y="200" width="670" height="611" key="search.everywhere.popup/0.23.1440.812@0.23.1440.812" timestamp="1577994571345" />
     <state x="385" y="202" width="670" height="617" key="search.everywhere.popup/0.23.1440.821@0.23.1440.821" timestamp="1577754667424" />
