@@ -10,6 +10,11 @@ namespace AlbumReview\AlbumReviewBundle\Repository;
  */
 class AlbumEntryRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $limit
+     * @param $offset
+     * @return \Doctrine\ORM\Query
+     */
     public function getLatest($limit, $offset)
     {
         $queryBuilder = $this->createQueryBuilder('entry');
@@ -19,6 +24,10 @@ class AlbumEntryRepository extends \Doctrine\ORM\EntityRepository
         return $queryBuilder->getQuery();
     }
 
+    /**
+     * @param $query
+     * @return \Doctrine\ORM\Query
+     */
     public function getSearchResults($query)
     {
         //Select album from album table where title or artist is
@@ -29,10 +38,13 @@ class AlbumEntryRepository extends \Doctrine\ORM\EntityRepository
             ->orWhere('album.artist LIKE :string')
             ->orWhere('album.reviewer LIKE :string')
             ->setParameter('string', '%'.$query.'%');
-        $query = $queryBuilder->getQuery();
-        return $query->getResult();
+        return $queryBuilder->getQuery();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getAlbumImage($id)
     {
         $queryBuilder = $this->createQueryBuilder('album');
@@ -43,6 +55,12 @@ class AlbumEntryRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function countAlbumEntryByUser($id)
     {
         $queryBuilder = $this->createQueryBuilder('album');
@@ -55,6 +73,10 @@ class AlbumEntryRepository extends \Doctrine\ORM\EntityRepository
         return $totalAlbums;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getAlbumEntryByUser($id)
     {
         $queryBuilder = $this->createQueryBuilder('album');
