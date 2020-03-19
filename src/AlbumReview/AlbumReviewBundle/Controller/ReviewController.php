@@ -11,6 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ReviewController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function createReviewAction(Request $request)
     {
         // Create an new (empty) ReviewEntry entity
@@ -50,6 +54,11 @@ class ReviewController extends Controller
             ['form' => $reviewForm->createView()]);
     }
 
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function editReviewAction($id, Request $request)
     {
 
@@ -83,6 +92,10 @@ class ReviewController extends Controller
 
     }
 
+    /**
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     public function deleteReviewAction($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -110,6 +123,11 @@ class ReviewController extends Controller
         }
     }
 
+    /**
+     * @param $needles
+     * @param $haystack
+     * @return bool
+     */
     public function role_in_roles($needles, $haystack)
     {
         return empty(array_diff($needles, $haystack));

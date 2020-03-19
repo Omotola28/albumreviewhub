@@ -29,6 +29,11 @@ class AdminController extends Controller
 
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function privilegeControlAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -87,6 +92,12 @@ class AdminController extends Controller
             ['form' => $assignmentForm->createView(), 'user' => $user, 'noOfAlbums' => $albumCount ]);
     }
 
+    /**
+     * @param $user
+     * @param $role
+     * @param $operation
+     * @return string
+     */
     public function handlePrivilegeRequest($user, $role, $operation)
     {
         $user_roles = $user->getRoles();

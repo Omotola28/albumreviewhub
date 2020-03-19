@@ -8,9 +8,18 @@ use AlbumReview\AlbumReviewBundle\Form\AlbumEntryType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
+use Knp\Component\Pager\PaginatorInterface;
 
+/**
+ * Class AlbumController
+ * @package AlbumReview\AlbumReviewBundle\Controller
+ */
 class AlbumController extends Controller
 {
+    /**
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function viewAction($id)
     {
         // Get the doctrine Entity manager
@@ -28,6 +37,10 @@ class AlbumController extends Controller
             ['entry' => $albumEntry, 'reviews' => $reviewEntry, 'tracks' => $tracks]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function createAction(Request $request)
     {
 
@@ -69,6 +82,11 @@ class AlbumController extends Controller
 
     }
 
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function editAction($id, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -106,6 +124,10 @@ class AlbumController extends Controller
 
     }
 
+    /**
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function deleteAction($id)
     {
         //Get roles associated with user
@@ -137,6 +159,9 @@ class AlbumController extends Controller
 
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function searchBarAction()
     {
         $form = $this->createFormBuilder(null)
@@ -147,25 +172,39 @@ class AlbumController extends Controller
             ['form' => $form->createView()]);
     }
 
-    public function handleSearchAction(Request $request)
+    /**
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function handleSearchAction(PaginatorInterface $paginator, Request $request)
     {
         $queryString = $request->request->get('form');
 
         $em = $this->getDoctrine()->getManager();
 
         //Get search results from query
-        $searchResult = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')
+        $searchResultQuery = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')
             ->getSearchResults($queryString['search']);
 
+        $result = $paginator->paginate(
+            $searchResultQuery, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            8 /*limit per page*/
+        );
+
         //If no results were gotten alert the user
-        if(count($searchResult) == 0)
+        if(count($result) == 0)
             return $this->render('AlbumReviewAlbumReviewBundle:Page:noresult.html.twig');
 
         //If all is well show user the results of search.
         return $this->render('AlbumReviewAlbumReviewBundle:Page:index.html.twig',
-            ['entries' => $searchResult]);
+            ['entries' => $result]);
     }
 
+    /**
+     * @param $album
+     */
     public function uploadImageForAlbum($album)
     {
         //get image value
@@ -185,6 +224,9 @@ class AlbumController extends Controller
 
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function viewAlbumsAction()
     {
         $user = $this->getUser();

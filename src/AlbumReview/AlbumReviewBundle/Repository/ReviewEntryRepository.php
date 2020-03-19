@@ -10,6 +10,10 @@ namespace AlbumReview\AlbumReviewBundle\Repository;
  */
 class ReviewEntryRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $album_id
+     * @return mixed
+     */
     public function getAssociatedReviews($album_id)
     {
         //Get all the reviews that are associated with the album id.

@@ -10,6 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PageController extends Controller
 {
+    /**
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction(PaginatorInterface $paginator, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -26,6 +31,9 @@ class PageController extends Controller
             ['entries' => $result]);
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function aboutAction()
     {
         return $this->render('AlbumReviewAlbumReviewBundle:Page:about.html.twig', array(
