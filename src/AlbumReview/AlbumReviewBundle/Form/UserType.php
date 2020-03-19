@@ -36,7 +36,8 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AlbumReview\AlbumReviewBundle\Entity\User'
+            'data_class' => 'AlbumReview\AlbumReviewBundle\Entity\User',
+
         ));
     }
 

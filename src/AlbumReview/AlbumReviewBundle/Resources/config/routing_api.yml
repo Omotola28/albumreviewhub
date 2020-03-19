@@ -1,0 +1,11 @@
+api_album:
+  type: rest
+  resource: AlbumReview\AlbumReviewBundle\Controller\AlbumReviewAPIController
+  name_prefix: api_album_
+  prefix: /
+
+api_user_album_review:
+  type: rest
+  resource: AlbumReview\AlbumReviewBundle\Controller\UserAlbumReviewAPIController
+  name_prefix: api_user_album_review_
+  prefix: /

@@ -10,4 +10,13 @@ namespace AlbumReview\AlbumReviewBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getUserSpecificReviews($username){
+        $queryBuilder = $this->createQueryBuilder('user');
+        $queryBuilder->select('user')
+            ->setParameter(':username', $username)
+            ->where('user.username = :username')
+            ->andWhere('review.album = :albumid');
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
+    }
 }

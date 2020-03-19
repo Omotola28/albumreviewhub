@@ -4,10 +4,13 @@ namespace AlbumReview\AlbumReviewBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
+
 
 /**
  * @ORM\Table(name="review_entry")
  * @ORM\Entity(repositoryClass="AlbumReview\AlbumReviewBundle\Repository\ReviewEntryRepository")
+ * @JMS\ExclusionPolicy("all")
  */
 class ReviewEntry
 {
@@ -16,24 +19,28 @@ class ReviewEntry
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
+     * @JMS\Expose()
      */
     private $id;
 
     /**
      * @var string
      * @ORM\Column(type="string")
+     * @JMS\Expose()
      */
     private $albumreviewer;
 
     /**
      * @var string
      * @ORM\Column(type="text")
+     * @JMS\Expose()
      */
     private $review;
 
     /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
+     * @JMS\Expose()
      */
     private $timestamp;
 
@@ -41,8 +48,35 @@ class ReviewEntry
      * @var \AlbumReview\AlbumReviewBundle\Entity\AlbumEntry
      * @ORM\ManyToOne(targetEntity="AlbumReview\AlbumReviewBundle\Entity\AlbumEntry", inversedBy="review_entries")
      * @ORM\JoinColumn(name="album_id", referencedColumnName="id", onDelete="CASCADE")
+     *
+     * @JMS\Exclude()
      */
     private $album;
+
+    /**
+     * @var \AlbumReview\AlbumReviewBundle\Entity\User
+     * @ORM\ManyToOne(targetEntity="AlbumReview\AlbumReviewBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
+     *
+     * @JMS\Exclude()
+     */
+    private $user;
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
 
     /**
      * @return AlbumEntry

@@ -28,6 +28,7 @@ class User extends BaseUser
      */
     protected $entries;
 
+
     public function __construct()
     {
         parent::__construct();
@@ -43,6 +44,7 @@ class User extends BaseUser
     {
         return $this->id;
     }
+
 
     /**
      * Add entry.

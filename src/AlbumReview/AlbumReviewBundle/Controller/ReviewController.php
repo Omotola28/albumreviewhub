@@ -34,6 +34,7 @@ class ReviewController extends Controller
             //Set album for review created
             $reviewEntry->setAlbum($album);
             // manually set the author to the current user
+            $reviewEntry->setUser($this->getUser());
             $reviewEntry->setAlbumReviewer($this->getUser());
             $reviewEntry->setTimestamp(new \DateTime());
             // tell the entity manager we want to persist this entity

@@ -22,4 +22,59 @@ class ReviewEntryRepository extends \Doctrine\ORM\EntityRepository
         $query = $queryBuilder->getQuery();
         return $query->getResult();
     }
+
+    public function getAlbumReviews($albumId){
+        $queryBuilder = $this->createQueryBuilder('review');
+        $queryBuilder->select('review')
+            ->setParameter(':albumid', $albumId)
+            ->where('review.album = :albumid');
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
+    }
+
+    public function getAlbumSpecificReview($albumId, $reviewId){
+        $queryBuilder = $this->createQueryBuilder('review');
+        $queryBuilder->select('review')
+            ->setParameter(':albumid', $albumId)
+            ->setParameter(':reviewId', $reviewId)
+            ->where('review.id = :reviewId')
+            ->andWhere('review.album = :albumid');
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
+    }
+
+    public function getUserSpecificAblumReviews($userId, $albumId){
+        $queryBuilder = $this->createQueryBuilder('review');
+        $queryBuilder->select('review')
+            ->setParameter(':userId', $userId)
+            ->setParameter(':albumId', $albumId)
+            ->where('review.user = :userId')
+            ->andWhere('review.album = :albumId');
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
+    }
+
+    public function checkForReviewInAlbum($reviewId, $albumId){
+        $queryBuilder = $this->createQueryBuilder('review');
+        $queryBuilder->select('review')
+            ->setParameter(':albumId', $albumId)
+            ->setParameter(':reviewId', $reviewId)
+            ->where('review.id = :reviewId')
+            ->andWhere('review.album = :albumId');
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
+    }
+
+    public function getUserAlbumSpecificReview($reviewId, $albumId, $userId){
+        $queryBuilder = $this->createQueryBuilder('review');
+        $queryBuilder->select('review')
+            ->setParameter(':albumId', $albumId)
+            ->setParameter(':reviewId', $reviewId)
+            ->setParameter(':userId', $userId)
+            ->where('review.id = :reviewId')
+            ->andWhere('review.album = :albumId')
+            ->andWhere('review.user = :userId');
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
+    }
 }
