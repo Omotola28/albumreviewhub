@@ -9,3 +9,9 @@ api_user_album_review:
   resource: AlbumReview\AlbumReviewBundle\Controller\UserAlbumReviewAPIController
   name_prefix: api_user_album_review_
   prefix: /
+
+api_token:
+  type: rest
+  resource: AlbumReview\AlbumReviewBundle\Controller\TokenAPIController
+  name_prefix: api_token_
+  prefix: /

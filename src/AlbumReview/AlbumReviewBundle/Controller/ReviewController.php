@@ -14,6 +14,7 @@ class ReviewController extends Controller
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
      */
     public function createReviewAction(Request $request)
     {

@@ -1,10 +1,8 @@
 <?php
 
 namespace AlbumReview\AlbumReviewBundle\Controller;
-use AlbumReview\AlbumReviewBundle\Entity\AlbumEntry;
-use AlbumReview\AlbumReviewBundle\Form\AlbumEntryAPIType;
+
 use FOS\RestBundle\Controller\AbstractFOSRestController;
-use Symfony\Component\HttpFoundation\Request;
 
 class AlbumReviewAPIController extends AbstractFOSRestController
 {
@@ -15,10 +13,17 @@ class AlbumReviewAPIController extends AbstractFOSRestController
      * /api/v1/albums/reviews
      */
     public function getAlbumsReviewsAction() {
+
+       // $this->denyAccessUnlessGranted('ROLE_API');
+
         $em = $this->getDoctrine()->getManager();
         $albumEntries = $em->getRepository('AlbumReviewAlbumReviewBundle:ReviewEntry')
             ->findAll();
 
+        if(empty($albumEntries)) {
+            //Request was successful but no reviews currently exist.
+            return $this->handleView($this->view(null, 204));
+        }
 
         return $this->handleView($this->view($albumEntries));
     }
@@ -35,6 +40,12 @@ class AlbumReviewAPIController extends AbstractFOSRestController
         $em = $this->getDoctrine()->getManager();
         $albumReviews = $em->getRepository('AlbumReviewAlbumReviewBundle:ReviewEntry')
             ->getAlbumSpecificReview($albumId, $reviewId);
+
+        if(empty($albumReviews)) {
+            //Request was successful but no reviews currently exist.
+            return $this->handleView($this->view('Album does not contain reviews', 204));
+        }
+
         return $this->handleView($this->view($albumReviews));
     }
 
@@ -49,6 +60,12 @@ class AlbumReviewAPIController extends AbstractFOSRestController
     {
         $em = $this->getDoctrine()->getManager();
         $albumReviews = $em->getRepository('AlbumReviewAlbumReviewBundle:ReviewEntry')->getAlbumReviews($albumId);
+
+        if(empty($albumReviews)) {
+            //Request was successful but no reviews currently exist.
+            return $this->handleView($this->view(null, 204));
+        }
+
         return $this->handleView($this->view($albumReviews));
     }
 }

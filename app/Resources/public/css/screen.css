@@ -208,6 +208,24 @@ hr{
     margin: 3em 0.1em 2em 2em;
 }
 
+
+.disable_edit_artist{
+    background-color: lightgray;
+}
+
+.similar h4 {
+    padding-top: 20px;
+}
+
+.api_info, #album_summary{
+    font-weight: bolder;
+    color: crimson;
+}
+
+.album_image{
+    margin-bottom : 2em;
+}
+
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
     .col-25, .col-75, input[type=submit] {

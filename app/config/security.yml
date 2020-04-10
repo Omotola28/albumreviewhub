@@ -15,6 +15,13 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        api:
+            pattern: ^/api/v1/users
+            stateless: true
+            guard:
+                authenticators:
+                    - 'jwt_token_authenticator'
+
         main:
             anonymous: ~
             logout: ~

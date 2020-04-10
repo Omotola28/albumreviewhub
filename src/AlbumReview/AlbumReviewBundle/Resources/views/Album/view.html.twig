@@ -6,9 +6,34 @@
 
 
     <div>
-        <h1>{{ entry.title }}</h1>
-        <h1>{{ entry.artist}}</h1>
-        <img src="{{ asset('uploads/images/' ~ entry.image) }}" width='200' height='200'>
+        <div class="row">
+            <div class="col-sm-8" >
+                <h1>{{ entry.title }}</h1>
+                <h1>{{ entry.artist}}</h1>
+                <img class="album_image" src="{{ asset('uploads/images/' ~ entry.image) }}" width='200' height='200'>
+                {% if info is defined %}
+                    <p class="api_info">Listeners: {{ info.listeners }}</p>
+                    <p class="api_info">Play Counts: {{ info.playcounts }}</p>
+                    <p><span id="album_summary">Album Summary:</span> {{ info.summary|striptags('<a>')|raw}}</p>
+                {% endif %}
+            </div>
+            <div class="col-sm-4 similar">
+                <h4>List of similar artist found on <a href="https://www.last.fm/">last.fm</a></h4>
+                {% if error is defined %}
+                    {% if error is not empty %}
+                        <div class="alert alert-danger" role="alert">{{  error }}</div>
+                    {% endif %}
+                {% endif %}
+                {% if similar_artists is defined %}
+                     {% for artist in similar_artists %}
+                         <a href="{{ artist.url }}"><p class="list-group-item list-group-item-action">{{ artist.name }}</p></a>
+                     {% endfor %}
+                {% endif %}
+
+            </div>
+        </div>
+
+
         <div class="card" id="author-card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Creator's review</h5>
@@ -18,7 +43,9 @@
                 <a href="{{ path('create_review',{'id':entry.id}) }}" class="card-link">Add Review</a>
             </div>
         </div>
+
     </div>
+
 
     <div class="list-group">
         <p class="list-group-item list-group-item-action active">

@@ -28,6 +28,11 @@ class User extends BaseUser
      */
     protected $entries;
 
+    /**
+     * @ORM\Column(type="string", unique=true)
+     */
+    protected $apiKey;
+
 
     public function __construct()
     {
@@ -44,6 +49,17 @@ class User extends BaseUser
     {
         return $this->id;
     }
+
+    /**
+     * Get username.
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
 
 
     /**
@@ -80,5 +96,29 @@ class User extends BaseUser
     public function getEntries()
     {
         return $this->entries;
+    }
+
+    /**
+     * Set apiKey.
+     *
+     * @param string $apiKey
+     *
+     * @return User
+     */
+    public function setApiKey($apiKey)
+    {
+        $this->apiKey = $apiKey;
+
+        return $this;
+    }
+
+    /**
+     * Get apiKey.
+     *
+     * @return string
+     */
+    public function getApiKey()
+    {
+        return $this->apiKey;
     }
 }

@@ -9,6 +9,7 @@ use AlbumReview\AlbumReviewBundle\Form\AlbumEntryAPIType;
 use AlbumReview\AlbumReviewBundle\Form\ReviewEntryAPIType;
 use AlbumReview\AlbumReviewBundle\Form\ReviewEntryType;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class UserAlbumReviewAPIController extends AbstractFOSRestController
@@ -39,17 +40,22 @@ class UserAlbumReviewAPIController extends AbstractFOSRestController
         $form->submit(json_decode($request->getContent(), true));
 
 
-        $user = $em->getRepository('AlbumReviewAlbumReviewBundle:User')->find($userId);
+        //$user = $em->getRepository('AlbumReviewAlbumReviewBundle:User')->find($userId);
 
+        $user = $this->getUser();
 
-        if(is_null($user)){
-            return $this->handleView($this->view(null, 404));
+        if($user->getId() !== intval($userId)){
+            return new  JsonResponse([
+                'error' => 'User token does not match userid'
+            ], 401);
+           // return $this->handleView($this->view(null, 404));
         }
         else{
             if($form->isValid()){
                 $em = $this->getDoctrine()->getManager();
                 $album = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')->find($albumId);
                 $reviewEntry->setAlbum($album);
+                $reviewEntry->setUser($user);
                 $reviewEntry->setAlbumReviewer($user);
                 $reviewEntry->setTimestamp(new \DateTime());
                 // tell the entity manager we want to persist this entity
@@ -100,14 +106,14 @@ class UserAlbumReviewAPIController extends AbstractFOSRestController
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * Editing a specific albums review
-     * /api/v1/users/{userid}/albums/reviews/{id}
+     * /api/v1/users/{userid}/albums/{albumid}/reviews/{id}
      */
     public function putUserAlbumsReviewsAction(Request $request, $userId, $albumId, $reviewId)
     {
         $em = $this->getDoctrine()->getManager();
         $reviewEntry = $em->getRepository('AlbumReviewAlbumReviewBundle:ReviewEntry')->find($reviewId);
         $album = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')->find($albumId);
-        $user = $em->getRepository('AlbumReviewAlbumReviewBundle:User')->find($userId);
+        $user = $this->getUser();
 
         //Check if the review we want to modify is in the album folder
         $reviewExsist = $em->getRepository('AlbumReviewAlbumReviewBundle:ReviewEntry')
@@ -122,8 +128,11 @@ class UserAlbumReviewAPIController extends AbstractFOSRestController
         // json_decode the request content and pass it to the form
         $reviewForm->submit(json_decode($request->getContent(), true));
 
-        if(is_null($user)){
-            return $this->handleView($this->view('User not found', 404));
+        if($user->getId() !== intval($userId)){
+            return new  JsonResponse([
+                'error' => 'User token does not match userid'
+            ], 401);
+            // return $this->handleView($this->view(null, 404));
         }
         elseif(empty($reviewExsist)){
             return $this->handleView($this->view('Review not found in album', 404));
@@ -152,20 +161,23 @@ class UserAlbumReviewAPIController extends AbstractFOSRestController
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * Deleting a specific album's review
-     * /api/v1/users/{userid}/albums/reviews/{id}
+     * /api/v1/users/{userid}/albums/{albumid}/reviews/{id}
      */
     public function deleteUserAlbumsReviewsAction( $userId, $albumId, $reviewId)
     {
         $em = $this->getDoctrine()->getManager();
         $entry = $em->getRepository('AlbumReviewAlbumReviewBundle:ReviewEntry')->find($reviewId);
         $album = $em->getRepository('AlbumReviewAlbumReviewBundle:AlbumEntry')->find($albumId);
-        $user = $em->getRepository('AlbumReviewAlbumReviewBundle:User')->find($userId);
+        $user = $this->getUser();
 
         $reviewExsist = $em->getRepository('AlbumReviewAlbumReviewBundle:ReviewEntry')
             ->checkForReviewInAlbum($reviewId, $albumId);
 
-        if(is_null($user)){
-            return $this->handleView($this->view('User not found', 404));
+        if($user->getId() !== intval($userId)){
+            return new  JsonResponse([
+                'error' => 'User token does not match userid'
+            ], 401);
+            // return $this->handleView($this->view(null, 404));
         }
         elseif(empty($reviewExsist)){
             return $this->handleView($this->view('Review not found in album', 404));
@@ -188,20 +200,15 @@ class UserAlbumReviewAPIController extends AbstractFOSRestController
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * Get a specific album's review
-     * /api/v1/users/{userid}/albums/reviews/{id}
+     * /api/v1/users/{userid}/albums/{albumid}/reviews/{id}
      */
     public function getUserAlbumReviewAction( $userId, $albumId, $reviewId){
         $em = $this->getDoctrine()->getManager();
 
-        $user = $em->getRepository('AlbumReviewAlbumReviewBundle:User')->find($userId);
-
         $reviewExsist = $em->getRepository('AlbumReviewAlbumReviewBundle:ReviewEntry')
             ->checkForReviewInAlbum($reviewId, $albumId);
 
-        if(is_null($user)){
-            return $this->handleView($this->view('User not found', 404));
-        }
-        elseif(empty($reviewExsist)){
+        if(empty($reviewExsist)){
             return $this->handleView($this->view('Review not found in album', 404));
         }
 

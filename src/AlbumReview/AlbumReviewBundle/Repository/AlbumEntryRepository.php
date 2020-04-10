@@ -86,4 +86,8 @@ class AlbumEntryRepository extends \Doctrine\ORM\EntityRepository
         $query = $queryBuilder->getQuery();
         return $query->getResult();
     }
+
+    public function getAlbumAPITracks($artist, $title){
+
+    }
 }

@@ -16,8 +16,13 @@
             'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'
         %}
             <script type="text/javascript" src="{{ asset_url }}"></script>
+
         {% endjavascripts %}
     {% endblock %}
+    {% block javascripts_footer %}
+         <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    {% endblock %}
+
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
 <body>

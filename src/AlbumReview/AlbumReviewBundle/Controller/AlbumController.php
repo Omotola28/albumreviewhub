@@ -6,9 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AlbumReview\AlbumReviewBundle\Entity\AlbumEntry;
 use AlbumReview\AlbumReviewBundle\Form\AlbumEntryType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
+use GuzzleHttp\Client as Client;
 
 /**
  * Class AlbumController
@@ -22,6 +24,7 @@ class AlbumController extends Controller
      */
     public function viewAction($id)
     {
+        $albumInfo =[];
         // Get the doctrine Entity manager
         $em = $this->getDoctrine()->getManager();
         // Use the entity manager to retrieve the Entry entity for the id
@@ -32,18 +35,82 @@ class AlbumController extends Controller
 
         $tracks = $albumEntry->getTrackList();
 
+        $artist = $albumEntry->getArtist();
+        $title = $albumEntry->getTitle();
+
+
+
+        $artist = $albumEntry->getArtist();
+        $title = $albumEntry->getTitle();
+        $client = new Client(['base_uri' => 'http://ws.audioscrobbler.com/2.0/']);
+        if($artist !== '' && $title !== '' ) {
+            $response = $client->request('GET', "?method=album.getinfo&api_key=58f9cdd01552c66804a42f00a60b5297&artist=$artist&album=$title&format=json");
+
+            if ($response->getStatusCode() === 200) {
+
+                $getInfo = $response->getBody();
+                $readable_info = json_decode($getInfo);
+
+                //Additional information on the album cover
+                $albumInfo = array('listeners' => $readable_info->album->listeners,
+                    'playcounts' => $readable_info->album->playcount,
+                    'summary' => isset($readable_info->album->wiki->summary) ? $readable_info->album->wiki->summary : 'No available album summary');
+            }
+
+        }
+
+
+
+
+
+
+        $client = new Client(['base_uri' => 'http://ws.audioscrobbler.com/2.0/']);
+        if($artist !== '' ){
+            $response = $client->request('GET', "/2.0/?method=artist.getsimilar&artist=$artist&api_key=58f9cdd01552c66804a42f00a60b5297&format=json");
+
+            if($response->getStatusCode() === 200){
+                $similar_array = [];
+                $similar_artist =  $response->getBody();
+                $readable_similar_artist = json_decode($similar_artist);
+                if(isset($readable_similar_artist->error) && $readable_similar_artist->error == 6){
+                    return $this->render('AlbumReviewAlbumReviewBundle:Album:view.html.twig',
+                        ['entry' => $albumEntry, 'reviews' => $reviewEntry, 'info' => $albumInfo, 'tracks' => $tracks, 'error' => $readable_similar_artist->message]);
+                }
+                else{
+                    if(!empty($readable_similar_artist->similarartists->artist)){
+
+
+                        for ($count = 0; $count <= 5; $count++) {
+                            array_push($similar_array, $readable_similar_artist->similarartists->artist[$count]);
+                        }
+
+                        return $this->render('AlbumReviewAlbumReviewBundle:Album:view.html.twig',
+                            ['entry' => $albumEntry, 'reviews' => $reviewEntry, 'info' => $albumInfo, 'tracks' => $tracks, 'similar_artists' => $similar_array]);
+
+
+                    }
+
+                }
+
+            }
+
+        }
+
         // Pass the entry entity to the view for displaying
         return $this->render('AlbumReviewAlbumReviewBundle:Album:view.html.twig',
-            ['entry' => $albumEntry, 'reviews' => $reviewEntry, 'tracks' => $tracks]);
+            ['entry' => $albumEntry, 'reviews' => $reviewEntry, 'info' => $albumInfo, 'tracks' => $tracks]);
     }
 
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
      */
     public function createAction(Request $request)
     {
 
+
+        $albumInfo = [];
         // Create an new (empty) AlbumEntry entity
         $albumEntry = new AlbumEntry();
 
@@ -57,12 +124,54 @@ class AlbumController extends Controller
         // If the request is post it will populate the form
         $form->handleRequest($request);
         // validates the form
-        if($form->isValid()) {
+        if($form->isSubmitted() && $form->isValid()) {
             // Retrieve the doctrine entity manager
             $em = $this->getDoctrine()->getManager();
             // manually set the author to the current user
             $albumEntry->setAuthor($this->getUser());
             $albumEntry->setReviewer($this->getUser());
+
+            $artist = $albumEntry->getArtist();
+            $title = $albumEntry->getTitle();
+            $client = new Client(['base_uri' => 'http://ws.audioscrobbler.com/2.0/']);
+            if($artist !== '' && $title !== '' ){
+                $response = $client->request('GET', "?method=album.getinfo&api_key=58f9cdd01552c66804a42f00a60b5297&artist=$artist&album=$title&format=json");
+
+               if($response->getStatusCode() === 200){
+                    $string_tracklist = '';
+
+                    $trackList =  $response->getBody();
+                    $readable_trackList = json_decode($trackList);
+                    if(isset($readable_trackList->message) && $readable_trackList->message == 'Album not found'){
+                        return $this->render('AlbumReviewAlbumReviewBundle:Album:create.html.twig',
+                            ['form' => $form->createView(), 'error' => $readable_trackList->message]);
+                    }
+                    else{
+                        //Additional information on the album cover
+                        $albumInfo = array('listeners' => $readable_trackList->album->listeners,
+                                           'playcount' => $readable_trackList->album->playcount,
+                                            'summary' => $readable_trackList->album->wiki->summary);
+
+                        if(!empty($readable_trackList->album->tracks->track)){
+                            foreach ($readable_trackList->album->tracks->track as $track_item) {
+                                $string_tracklist .= $track_item->name .',';
+                            }
+
+                            $albumEntry->setTrackList(explode(",",$string_tracklist));
+
+                        }
+                        else{
+                            return $this->render('AlbumReviewAlbumReviewBundle:Album:create.html.twig',
+                                ['form' => $form->createView(), 'error' => 'Album does not contain tracks, Are you sure its the right album?']);
+                        }
+
+                    }
+
+                }
+
+            }
+
+
             $albumEntry->setTimestamp(new \DateTime());
 
             //function that handles uploading image for album
@@ -74,7 +183,7 @@ class AlbumController extends Controller
             $em->flush();
 
             return $this->redirect($this->generateUrl('album_view',
-                ['id' => $albumEntry->getId()]));
+                ['id' => $albumEntry->getId(),'info' => $albumInfo]));
         }
 
         return $this->render('AlbumReviewAlbumReviewBundle:Album:create.html.twig',
@@ -103,6 +212,41 @@ class AlbumController extends Controller
         if( $albumEntry->getAuthor() == $this->getUser())
         {
             if($form->isValid()) {
+
+                $artist = $albumEntry->getArtist();
+                $title = $albumEntry->getTitle();
+                $client = new Client(['base_uri' => 'http://ws.audioscrobbler.com/2.0/']);
+                if($artist !== '' && $title !== '' ){
+                    $response = $client->request('GET', "?method=album.getinfo&api_key=58f9cdd01552c66804a42f00a60b5297&artist=$artist&album=$title&format=json");
+
+                    if($response->getStatusCode() === 200){
+                        $string_tracklist = '';
+                        $trackList =  $response->getBody();
+                        $readable_trackList = json_decode($trackList);
+                        if(isset($readable_trackList->message) && $readable_trackList->message == 'Album not found'){
+                            return $this->render('AlbumReviewAlbumReviewBundle:Album:edit.html.twig',
+                                ['form' => $form->createView(), 'entry' => $albumEntry, 'error' => $readable_trackList->message]);
+                        }
+                        else{
+                            if(!empty($readable_trackList->album->tracks->track)){
+                                foreach ($readable_trackList->album->tracks->track as $track_item) {
+                                    $string_tracklist .= $track_item->name .',';
+                                }
+
+                                $albumEntry->setTrackList(explode(",",$string_tracklist));
+
+                            }
+                            else{
+                                return $this->render('AlbumReviewAlbumReviewBundle:Album:create.html.twig',
+                                    ['form' => $form->createView(), 'entry' => $albumEntry, 'error' => 'Album does not contain tracks, Are you sure its the right album?']);
+                            }
+
+                        }
+
+                    }
+
+                }
+
 
                 $this->uploadImageForAlbum($albumEntry);
 

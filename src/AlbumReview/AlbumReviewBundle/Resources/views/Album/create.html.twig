@@ -3,6 +3,12 @@
 {% block title %}Create a album review entry{% endblock %}
 {% block body %}
     <h1>Create an album review</h1>
+    <p>Tracklist is automatically added if album is found</p>
+    {% if error is defined %}
+        {% if error is not empty %}
+            <div class="alert alert-danger" role="alert">{{  error }}</div>
+        {% endif %}
+    {% endif %}
     {{ form_errors(form) }}
     {{ form(form) }}
 {% endblock %}
