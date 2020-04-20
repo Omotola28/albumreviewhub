@@ -35,16 +35,13 @@ class AlbumController extends Controller
 
         $tracks = $albumEntry->getTrackList();
 
-        $artist = $albumEntry->getArtist();
-        $title = $albumEntry->getTitle();
-
-
-
+        //Extra information when the album is clicked on
         $artist = $albumEntry->getArtist();
         $title = $albumEntry->getTitle();
         $client = new Client(['base_uri' => 'http://ws.audioscrobbler.com/2.0/']);
         if($artist !== '' && $title !== '' ) {
-            $response = $client->request('GET', "?method=album.getinfo&api_key=58f9cdd01552c66804a42f00a60b5297&artist=$artist&album=$title&format=json");
+            $response = $client->request('GET',
+                "?method=album.getinfo&api_key=58f9cdd01552c66804a42f00a60b5297&artist=$artist&album=$title&format=json");
 
             if ($response->getStatusCode() === 200) {
 
@@ -54,9 +51,10 @@ class AlbumController extends Controller
                 //Additional information on the album cover
                 $albumInfo = array('listeners' => $readable_info->album->listeners,
                     'playcounts' => $readable_info->album->playcount,
-                    'summary' => isset($readable_info->album->wiki->summary) ? $readable_info->album->wiki->summary : 'No available album summary');
+                    'summary' => isset($readable_info->album->wiki->summary)
+                                       ? $readable_info->album->wiki->summary
+                                       : 'No available album summary');
             }
-
         }
 
 
@@ -66,7 +64,8 @@ class AlbumController extends Controller
 
         $client = new Client(['base_uri' => 'http://ws.audioscrobbler.com/2.0/']);
         if($artist !== '' ){
-            $response = $client->request('GET', "/2.0/?method=artist.getsimilar&artist=$artist&api_key=58f9cdd01552c66804a42f00a60b5297&format=json");
+            $response =
+                $client->request('GET', "/2.0/?method=artist.getsimilar&artist=$artist&api_key=58f9cdd01552c66804a42f00a60b5297&format=json");
 
             if($response->getStatusCode() === 200){
                 $similar_array = [];
@@ -74,7 +73,11 @@ class AlbumController extends Controller
                 $readable_similar_artist = json_decode($similar_artist);
                 if(isset($readable_similar_artist->error) && $readable_similar_artist->error == 6){
                     return $this->render('AlbumReviewAlbumReviewBundle:Album:view.html.twig',
-                        ['entry' => $albumEntry, 'reviews' => $reviewEntry, 'info' => $albumInfo, 'tracks' => $tracks, 'error' => $readable_similar_artist->message]);
+                              ['entry' => $albumEntry,
+                               'reviews' => $reviewEntry,
+                               'info' => $albumInfo,
+                               'tracks' => $tracks,
+                               'error' => $readable_similar_artist->message]);
                 }
                 else{
                     if(!empty($readable_similar_artist->similarartists->artist)){
@@ -85,15 +88,15 @@ class AlbumController extends Controller
                         }
 
                         return $this->render('AlbumReviewAlbumReviewBundle:Album:view.html.twig',
-                            ['entry' => $albumEntry, 'reviews' => $reviewEntry, 'info' => $albumInfo, 'tracks' => $tracks, 'similar_artists' => $similar_array]);
-
+                               ['entry' => $albumEntry,
+                                'reviews' => $reviewEntry,
+                                'info' => $albumInfo,
+                                'tracks' => $tracks,
+                                'similar_artists' => $similar_array]);
 
                     }
-
                 }
-
             }
-
         }
 
         // Pass the entry entity to the view for displaying
@@ -135,7 +138,8 @@ class AlbumController extends Controller
             $title = $albumEntry->getTitle();
             $client = new Client(['base_uri' => 'http://ws.audioscrobbler.com/2.0/']);
             if($artist !== '' && $title !== '' ){
-                $response = $client->request('GET', "?method=album.getinfo&api_key=58f9cdd01552c66804a42f00a60b5297&artist=$artist&album=$title&format=json");
+                $response =
+                    $client->request('GET', "?method=album.getinfo&api_key=58f9cdd01552c66804a42f00a60b5297&artist=$artist&album=$title&format=json");
 
                if($response->getStatusCode() === 200){
                     $string_tracklist = '';
@@ -164,11 +168,8 @@ class AlbumController extends Controller
                             return $this->render('AlbumReviewAlbumReviewBundle:Album:create.html.twig',
                                 ['form' => $form->createView(), 'error' => 'Album does not contain tracks, Are you sure its the right album?']);
                         }
-
                     }
-
                 }
-
             }
 
 

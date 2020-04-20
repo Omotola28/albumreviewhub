@@ -69,7 +69,7 @@ class ReviewEntryRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
-    public function getUserAlbumSpecificReview($reviewId, $albumId, $userId){
+    public function checkForReview($reviewId, $albumId, $userId){
         $queryBuilder = $this->createQueryBuilder('review');
         $queryBuilder->select('review')
             ->setParameter(':albumId', $albumId)
@@ -81,4 +81,6 @@ class ReviewEntryRepository extends \Doctrine\ORM\EntityRepository
         $query = $queryBuilder->getQuery();
         return $query->getResult();
     }
+
+
 }

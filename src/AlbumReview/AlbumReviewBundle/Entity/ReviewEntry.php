@@ -24,6 +24,16 @@ class ReviewEntry
     private $id;
 
     /**
+     * @var \AlbumReview\AlbumReviewBundle\Entity\User
+     * @ORM\ManyToOne(targetEntity="AlbumReview\AlbumReviewBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
+     *
+     * @JMS\Exclude()
+     */
+    private $user;
+
+
+    /**
      * @var string
      * @ORM\Column(type="string")
      * @JMS\Expose()
@@ -53,14 +63,6 @@ class ReviewEntry
      */
     private $album;
 
-    /**
-     * @var \AlbumReview\AlbumReviewBundle\Entity\User
-     * @ORM\ManyToOne(targetEntity="AlbumReview\AlbumReviewBundle\Entity\User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")
-     *
-     * @JMS\Exclude()
-     */
-    private $user;
 
     /**
      * @return User

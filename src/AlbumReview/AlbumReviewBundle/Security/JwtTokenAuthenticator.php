@@ -42,9 +42,13 @@ class JwtTokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        return new  JsonResponse([
-            'error' => 'auth required'
+
+        $message = $authException ? $authException->getMessageKey() : 'Missing credentials';
+
+        return new JsonResponse([
+            'error' => $message
         ], 401);
+
     }
 
     /**
@@ -104,8 +108,6 @@ class JwtTokenAuthenticator extends AbstractGuardAuthenticator
             // you may want to customize or obfuscate the message first
             'message' => strtr($exception->getMessageKey(), $exception->getMessageData())
 
-            // or to translate this message
-            // $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())
         ];
 
         return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
@@ -116,6 +118,7 @@ class JwtTokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
+        //on success let the request continue
         return null;
     }
 

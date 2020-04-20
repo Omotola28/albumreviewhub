@@ -23,28 +23,28 @@ class TokenAPIController extends Controller
             ->findOneBy(['username' => $request->request->get('username')]);
 
         if (!$user) {
-            throw $this->createNotFoundException();
+            return new  JsonResponse([
+                'error' => 'User not found'
+            ], 404);
         }
 
 
         $isValid = $this->get('security.password_encoder')
             ->isPasswordValid($user, $request->request->get('password'));
         if (!$isValid) {
-            throw new BadCredentialsException();
+            return new  JsonResponse([
+                'error' => 'Password is invalid'
+            ], 401);
         }
 
         $token = $this->get('lexik_jwt_authentication.encoder')
             ->encode([
                 'username' => $user->getUsername(),
                 'exp' => time() + 86400, // 1 day expiration
-                'role' => 'ROLE_API'
             ]);
 
 
-        return new JsonResponse(['token' => $token]);
-       /* 'headers' => [
-            'Authorization' => 'Bearer '.$token
-        ]*/
+        return new JsonResponse(['token' => $token], 200);
     }
 
 }

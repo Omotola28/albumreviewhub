@@ -22,6 +22,8 @@ security:
                 authenticators:
                     - 'jwt_token_authenticator'
 
+
+
         main:
             anonymous: ~
             logout: ~
