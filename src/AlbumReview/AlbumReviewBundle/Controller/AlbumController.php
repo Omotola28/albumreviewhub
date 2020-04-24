@@ -137,9 +137,10 @@ class AlbumController extends Controller
             $artist = $albumEntry->getArtist();
             $title = $albumEntry->getTitle();
             $client = new Client(['base_uri' => 'http://ws.audioscrobbler.com/2.0/']);
+            $artistName = preg_replace('/\s/', '+', $artist);
             if($artist !== '' && $title !== '' ){
                 $response =
-                    $client->request('GET', "?method=album.getinfo&api_key=58f9cdd01552c66804a42f00a60b5297&artist=$artist&album=$title&format=json");
+                    $client->request('GET', "?method=album.getinfo&api_key=58f9cdd01552c66804a42f00a60b5297&artist=$artistName&album=$title&format=json");
 
                if($response->getStatusCode() === 200){
                     $string_tracklist = '';
@@ -154,7 +155,9 @@ class AlbumController extends Controller
                         //Additional information on the album cover
                         $albumInfo = array('listeners' => $readable_trackList->album->listeners,
                                            'playcount' => $readable_trackList->album->playcount,
-                                            'summary' => $readable_trackList->album->wiki->summary);
+                                            'summary' => isset($readable_trackList->album->wiki->summary)
+                                                         ? $readable_trackList->album->wiki->summary
+                                                         : 'No available album summary');
 
                         if(!empty($readable_trackList->album->tracks->track)){
                             foreach ($readable_trackList->album->tracks->track as $track_item) {
